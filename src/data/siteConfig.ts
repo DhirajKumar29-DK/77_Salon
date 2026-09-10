@@ -1,0 +1,41 @@
+export const SITE_CONFIG = {
+  brandName: '77 SALON',
+  tagline: 'STYLE • BEAUTY • CARE',
+  subheading: 'UNISEX SALON',
+  description:
+    '77 SALON is a premier unisex beauty, hair, nail, and skin sanctuary delivering bespoke luxury treatments with uncompromising precision.',
+  phoneNumbers: ['+91 123456789', '+91 123456789'],
+  primaryPhone: '+91 123456789',
+  whatsappNumber: '+91123456789',
+  whatsappLink: 'https://wa.me/91123456789?text=Hello%2077%20SALON,%20I%20would%20like%20to%20inquire%20about%20booking%20an%20appointment.',
+  email: 'appointments@77salon.com',
+  socialHandles: {
+    instagram: '@77SALON',
+    facebook: '@77SALON',
+    instagramUrl: 'https://instagram.com/77SALON',
+    facebookUrl: 'https://facebook.com/77SALON',
+  },
+  hours: [
+    { days: 'Monday – Saturday', time: '10:00 AM – 8:30 PM' },
+    { days: 'Sunday', time: '10:00 AM – 8:00 PM' },
+  ],
+  navLinks: [
+    { label: 'HOME', href: '/' },
+    { label: 'ABOUT', href: '/about' },
+    { label: 'SERVICES', href: '/services', hasDropdown: true },
+    { label: 'PRICING', href: '/pricing' },
+    { label: 'GALLERY', href: '/gallery' },
+    { label: 'BRIDAL', href: '/bridal' },
+    { label: 'CONTACT', href: '/contact' },
+  ],
+  serviceSubmenu: [
+    { label: 'Manicure', href: '/services/manicure', desc: 'Classic, Spa & Luxury Care' },
+    { label: 'Pedicure', href: '/services/pedicure', desc: 'Ice Cream, Spa & Callus Care' },
+    { label: 'Facial & Skin', href: '/services/facial', desc: 'Hydra, Bridal Glow & O3+' },
+    { label: 'Gel Polish', href: '/services/gel-polish', desc: 'Hands, Feet & Custom Art' },
+    { label: 'Nail Extension', href: '/services/nail-extension', desc: 'Acrylic, Gel & Overlays' },
+    { label: 'Hair – Women', href: '/services/hair-women', desc: 'Spa, Styling, Colour & Cuts' },
+    { label: 'Hair – Men', href: '/services/hair-men', desc: 'Grooming, Beard & Hair Spa' },
+    { label: 'Waxing & Body Care', href: '/services/waxing', desc: 'Honey, Rica & Body Polishing' },
+  ],
+};

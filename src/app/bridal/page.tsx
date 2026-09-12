@@ -24,7 +24,7 @@ export default function BridalPage() {
         description="Thoughtful beauty care for the moments leading up to your celebration."
         bgImage="/images/hero/bride.jpg"
         heightClass="min-h-[45vh] sm:min-h-[62vh]"
-        contentClassName="-ml-6 sm:-ml-16 lg:-ml-28 xl:-ml-32 mb-4 sm:mb-8"
+        contentClassName="ml-0 sm:-ml-16 lg:-ml-28 xl:-ml-32 mb-4 sm:mb-8"
       >
         <div className="flex items-center gap-4 text-[11px] text-[#cbd5e1] font-light tracking-wider mt-2">
           <span>Skin</span>

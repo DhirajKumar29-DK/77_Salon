@@ -42,9 +42,9 @@ export const CATEGORIES: ServiceCategoryGroup[] = [
     id: 'facial',
     slug: 'facial',
     name: 'Facial & Skin Health',
-    tagline: 'Clinical Purity, Oxygen Infusion & Bridal Luminosity',
+    tagline: 'Pure Botanicals, Oxygen Infusion & Bridal Luminosity',
     description:
-      'Bespoke clinical facial rituals tailored to your skin’s unique rhythm — featuring Hydra Facial, O3+ Oxygen infusions, Anti-Ageing therapy, and the revered Bridal Glow Facial.',
+      'Bespoke restorative facial rituals tailored to your skin’s unique rhythm — featuring Hydra Facial, O3+ Oxygen infusions, Anti-Ageing therapy, and the revered Bridal Glow Facial.',
     startingPrice: 700,
     gender: 'unisex',
     heroImage: '/images/services/facial.jpg',

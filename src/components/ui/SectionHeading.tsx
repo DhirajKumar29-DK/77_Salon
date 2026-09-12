@@ -1,9 +1,9 @@
 import React from 'react';
 
 interface SectionHeadingProps {
-  eyebrow?: string;
-  title: string;
-  subtitle?: string;
+  eyebrow?: React.ReactNode;
+  title: React.ReactNode;
+  subtitle?: React.ReactNode;
   align?: 'left' | 'center' | 'right';
   theme?: 'dark' | 'light';
   className?: string;
@@ -28,23 +28,23 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
   return (
     <div className={`flex flex-col max-w-3xl ${alignClasses[align]} ${className}`}>
       {eyebrow && (
-        <span className="text-[11px] sm:text-xs uppercase tracking-[0.28em] font-medium text-[#d4af37] mb-3 flex items-center gap-2">
+        <span className="text-[11px] sm:text-xs uppercase tracking-[0.28em] font-bold text-[#d4af37] mb-3 flex items-center gap-2">
           <span className="inline-block w-5 h-[1px] bg-gradient-to-r from-transparent to-[#d4af37]" />
           {eyebrow}
           <span className="inline-block w-5 h-[1px] bg-gradient-to-l from-transparent to-[#d4af37]" />
         </span>
       )}
       <h2
-        className={`font-sans text-3xl sm:text-4xl md:text-5xl font-light tracking-tight leading-[1.15] ${
-          isDark ? 'text-[#f8fafc]' : 'text-[#f8fafc]'
+        className={`font-antic text-4xl sm:text-5xl md:text-6xl font-light leading-[1.1] ${
+          isDark ? 'text-[#f8fafc]' : 'text-[#060e22]'
         }`}
       >
         {title}
       </h2>
       {subtitle && (
         <p
-          className={`mt-4 text-sm sm:text-base leading-relaxed max-w-2xl font-light ${
-            isDark ? 'text-[#cbd5e1]' : 'text-[#cbd5e1]'
+          className={`mt-4 text-sm sm:text-base font-sans leading-relaxed max-w-2xl font-light ${
+            isDark ? 'text-[#cbd5e1]' : 'text-slate-600'
           }`}
         >
           {subtitle}

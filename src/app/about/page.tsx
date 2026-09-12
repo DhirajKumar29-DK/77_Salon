@@ -5,10 +5,11 @@ import { PageHero } from '@/components/ui/PageHero';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
-import { Sparkles, Shield, Heart, Scissors, ArrowRight } from 'lucide-react';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { Sparkles, Shield, Heart, Scissors } from 'lucide-react';
 
 export const metadata = {
-  title: 'About Our Sanctuary',
+  title: 'About Our Sanctuary | 77 SALON',
   description:
     'Learn about 77 SALON, an elevated unisex sanctuary dedicated to Style, Beauty, and Care.',
 };
@@ -17,170 +18,184 @@ export default function AboutPage() {
   return (
     <div className="bg-[#0a1a3f] text-[#f8fafc] min-h-screen">
       <PageHero
-        eyebrow="Our Heritage & Philosophy"
-        title="Bespoke Care. Elevated Living."
-        description="77 SALON was conceived as a harmonious retreat where hair craftsmanship, advanced skin rejuvenation, and meticulous nail architecture converge in an unhurried, unisex setting."
+        eyebrow="MEET THE EXPERTS"
+        title="The Artists Behind the Elegance."
+        description="Our salon is home to a passionate team of master stylists, colorists, and beauty experts. Together, we bring decades of experience and artistry to create your perfect look in a luxurious, welcoming environment."
         breadcrumbCurrent="About"
-        bgImage="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1920&q=85"
+        bgImage="/images/about/team.jpg"
+        heightClass="min-h-[60vh] sm:min-h-[73vh]"
+        contentClassName="ml-0 lg:-ml-16 xl:-ml-28 mb-0 sm:mb-12"
+        imagePositionClass="object-top sm:object-center"
       />
 
       {/* Brand Introduction */}
-      <section className="py-24 sm:py-32">
+      <section className="py-16 sm:py-20">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            <div className="lg:col-span-6 relative">
-              <div className="relative aspect-[4/5] w-full shadow-2xl overflow-hidden border border-[#d4af37]/40">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            {/* Left: Image — fade-right (comes from right side to center) */}
+            <ScrollReveal animation="fade-right" className="lg:col-span-6 relative group">
+              <div className="relative aspect-square w-full shadow-lg overflow-hidden border-[3px] border-[#d4af37] rounded-lg">
                 <Image
-                  src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80"
-                  alt="77 SALON Craftsmanship"
+                  src="/images/about/owner.jpg"
+                  alt="77 SALON Leadership"
                   fill
-                  className="object-cover opacity-100"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-[#060e22] text-[#f8fafc] p-6 shadow-2xl border-l-2 border-[#d4af37] max-w-[240px] hidden sm:block border border-[#d4af37]/30">
+              <div className="absolute -bottom-4 -right-4 bg-[#060e22] text-[#f8fafc] p-5 shadow-xl max-w-[240px] hidden sm:block border-[3px] border-[#d4af37] rounded-r-md">
                 <span className="text-[10px] uppercase tracking-widest text-[#d4af37] block font-semibold">
-                  Unisex Sanctuary
+                  Expert Leadership
                 </span>
-                <p className="font-sans text-lg text-[#f8fafc] mt-1">
-                  Individualized Rituals for Men & Women
+                <p className="font-sans text-base text-[#f8fafc] mt-1 font-light">
+                  Decades of industry excellence
                 </p>
               </div>
-            </div>
+            </ScrollReveal>
 
-            <div className="lg:col-span-6 space-y-6">
+            {/* Right: Text — fade-left (comes from left side to center) */}
+            <ScrollReveal animation="fade-left" delay={100} className="lg:col-span-6 space-y-5">
               <div className="inline-flex items-center gap-2">
                 <span className="w-8 h-[1px] bg-[#d4af37]" />
                 <span className="text-xs uppercase tracking-[0.28em] text-[#d4af37] font-semibold">
-                  Brand Origins
+                  Meet The Owner
                 </span>
               </div>
 
-              <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-light text-[#f8fafc] leading-[1.2]">
-                A refined perspective on beauty and personal grooming.
+              <h2 className="font-antic text-3xl sm:text-4xl font-light text-[#f8fafc] leading-[1.2]">
+                A vision built on passion, expertise, and luxury.
               </h2>
 
               <p className="text-sm sm:text-base text-[#cbd5e1] font-light leading-relaxed">
-                At 77 SALON, we believe that true self-care is deliberate, disciplined, and personalized. We established our salon around a transparent, comprehensive service menu that honors individual style without pretense.
+                At 77 SALON, our journey began with a simple yet profound vision: to create a sanctuary where every client feels valued and every service is a masterpiece. Led by industry veterans, our team is dedicated to pushing the boundaries of style and care.
               </p>
 
               <p className="text-sm sm:text-base text-[#cbd5e1] font-light leading-relaxed">
-                From our medical-grade hygiene and sterilized instruments to our imported Moroccan argan therapies and Italian Rica waxing rituals, every element has been curated to provide peace of mind and visible refinement.
+                We believe that a salon is more than just a place for grooming—it&apos;s a destination for transformation. Our handpicked team of master stylists and therapists ensures that every visit is a bespoke experience tailored to your unique beauty.
               </p>
 
-              <div className="pt-4 flex items-center gap-6">
-                <Button href="/services" variant="primary" size="md">
-                  Explore Services
-                </Button>
-                <Button href="/pricing" variant="outline" size="md">
-                  View Price Menu
+              <div className="pt-3 flex items-center gap-4">
+
+                <Button href="/contact" variant="outline" size="md">
+                  Book Appointment
                 </Button>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </Container>
       </section>
 
       {/* The 3 Core Pillars */}
-      <section className="py-24 sm:py-32 bg-[#060e22] text-[#f8fafc] border-y border-[#d4af37]/30">
+      <section className="py-16 sm:py-20 bg-[#060e22] text-[#f8fafc] border-y border-[#d4af37]/30">
         <Container>
-          <SectionHeading
-            eyebrow="The Core Pillars"
-            title="Style • Beauty • Care"
-            subtitle="The foundational ethos embedded in every service, from an express touch-up to our signature 90-minute rituals."
-            align="center"
-            theme="dark"
-            className="mb-16"
-          />
+          <ScrollReveal animation="fade-up">
+            <SectionHeading
+              eyebrow="The Core Pillars"
+              title="Style • Beauty • Care"
+              subtitle="The foundational ethos embedded in every service, from an express touch-up to our signature rituals."
+              align="center"
+              theme="dark"
+              className="mb-12"
+            />
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-[#0a1a3f]/80 backdrop-blur border border-[#d4af37]/30 hover:border-[#d4af37] transition-all shadow-xl rounded-lg overflow-hidden flex flex-col justify-between group">
-              <div className="relative h-48 w-full overflow-hidden bg-[#060e22]">
-                <Image src="https://images.unsplash.com/photo-1622288432450-277d0fef5ed6?auto=format&fit=crop&w=800&q=80" alt="Style Pillar" fill className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-100" />
-                <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0a1a3f] to-transparent" />
-                <div className="absolute bottom-3 left-4 flex items-center gap-2">
-                  <Scissors className="w-5 h-5 text-[#d4af37]" />
-                  <h3 className="font-sans text-2xl text-[#f8fafc] font-light">Style</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: <Scissors className="w-4 h-4 text-[#d4af37]" />,
+                label: 'Style',
+                img: 'https://images.unsplash.com/photo-1622288432450-277d0fef5ed6?auto=format&fit=crop&w=800&q=80',
+                body: 'Haircut architecture, custom beard shaping, high-fashion blowouts, and personalized aesthetics crafted to elevate your natural presence.',
+                delay: 0,
+              },
+              {
+                icon: <Sparkles className="w-4 h-4 text-[#d4af37]" />,
+                label: 'Beauty',
+                img: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80',
+                body: 'Luminous skin therapies, nourishing hair botanicals, and hand-finished nail extensions designed to illuminate your skin and hair.',
+                delay: 100,
+              },
+              {
+                icon: <Heart className="w-4 h-4 text-[#d4af37]" />,
+                label: 'Care',
+                img: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
+                body: 'Deep attentiveness to your comfort, gentle wax formulas for sensitive skin, scalp relaxation massages, and a peaceful atmosphere.',
+                delay: 200,
+              },
+            ].map((pillar, index) => {
+              const anim = index === 0 ? 'fade-right' : index === 2 ? 'fade-left' : 'fade-up';
+              return (
+              <ScrollReveal key={pillar.label} animation={anim} delay={pillar.delay} className="h-full">
+                <div className="bg-[#0a1a3f]/90 border-[3px] border-[#d4af37]/30 hover:border-[#d4af37] transition-all duration-300 rounded-lg overflow-hidden flex flex-col group h-full shadow-md hover:shadow-[0_8px_30px_rgba(212,175,55,0.15)]">
+                  <div className="relative h-44 w-full overflow-hidden bg-[#060e22] border-b-[3px] border-[#d4af37]/30 group-hover:border-[#d4af37]/60 transition-colors">
+                    <Image src={pillar.img} alt={pillar.label} fill className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                    <div className="absolute bottom-3 left-4 flex items-center gap-2 bg-[#0a1a3f]/90 px-3 py-1 rounded border-[2px] border-[#d4af37]/50 group-hover:border-[#d4af37] transition-colors">
+                      {pillar.icon}
+                      <h3 className="font-antic text-lg text-[#f8fafc] font-light">{pillar.label}</h3>
+                    </div>
+                  </div>
+                  <div className="p-5 sm:p-6 flex-1">
+                    <p className="text-sm text-[#cbd5e1] font-light leading-relaxed">
+                      {pillar.body}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="p-6">
-                <p className="text-xs sm:text-sm text-[#cbd5e1] font-light leading-relaxed">
-                  Haircut architecture, customized beard shaping, custom ombre nail gradients, and high-fashion blowouts crafted to elevate your natural presence.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-[#0a1a3f]/80 backdrop-blur border border-[#d4af37]/30 hover:border-[#d4af37] transition-all shadow-xl rounded-lg overflow-hidden flex flex-col justify-between group">
-              <div className="relative h-48 w-full overflow-hidden bg-[#060e22]">
-                <Image src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80" alt="Beauty Pillar" fill className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-100" />
-                <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0a1a3f] to-transparent" />
-                <div className="absolute bottom-3 left-4 flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-[#d4af37]" />
-                  <h3 className="font-sans text-2xl text-[#f8fafc] font-light">Beauty</h3>
-                </div>
-              </div>
-              <div className="p-6">
-                <p className="text-xs sm:text-sm text-[#cbd5e1] font-light leading-relaxed">
-                  Clinical oxygen facials, Hydra radiance treatments, rich hair color streaks, and paraffin foot restoration designed to illuminate your skin and hair.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-[#0a1a3f]/80 backdrop-blur border border-[#d4af37]/30 hover:border-[#d4af37] transition-all shadow-xl rounded-lg overflow-hidden flex flex-col justify-between group">
-              <div className="relative h-48 w-full overflow-hidden bg-[#060e22]">
-                <Image src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Care Pillar" fill className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-100" />
-                <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0a1a3f] to-transparent" />
-                <div className="absolute bottom-3 left-4 flex items-center gap-2">
-                  <Heart className="w-5 h-5 text-[#d4af37]" />
-                  <h3 className="font-sans text-2xl text-[#f8fafc] font-light">Care</h3>
-                </div>
-              </div>
-              <div className="p-6">
-                <p className="text-xs sm:text-sm text-[#cbd5e1] font-light leading-relaxed">
-                  Deep attentiveness to your comfort, gentle wax formulas for sensitive skin, scalp relaxation massages, and a peaceful atmosphere.
-                </p>
-              </div>
-            </div>
+              </ScrollReveal>
+            )})}
           </div>
         </Container>
       </section>
 
       {/* The Unisex Salon Experience */}
-      <section className="py-24 sm:py-32 bg-[#0a1a3f]">
+      <section className="py-16 sm:py-20 bg-[#0a1a3f]">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-6 space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            {/* Left: Text — fade-right */}
+            <ScrollReveal animation="fade-right" className="lg:col-span-6 space-y-5">
               <span className="text-xs uppercase tracking-[0.28em] text-[#d4af37] font-semibold">
                 The Experience
               </span>
-              <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl font-light text-[#f8fafc]">
+              <h2 className="font-antic text-3xl sm:text-4xl font-light text-[#f8fafc]">
                 Designed for Everyone.
               </h2>
               <p className="text-sm sm:text-base text-[#cbd5e1] font-light leading-relaxed">
                 77 SALON operates as a modern unisex salon. We create dedicated care pathways for both men and women with equal precision — eliminating outdated stereotypes in favor of genuine craftsmanship.
               </p>
               <div className="pt-2 flex gap-4">
-                <Button href="/book" variant="primary" size="lg">
+                <Button href="/contact" variant="primary" size="md">
                   Book Your Visit
                 </Button>
-                <Button href="/services" variant="outline-white" size="lg">
-                  View Treatments
-                </Button>
-              </div>
-            </div>
 
-            <div className="lg:col-span-6 grid grid-cols-2 gap-4">
-              <div className="relative aspect-[3/4] rounded-lg overflow-hidden border border-[#d4af37]/40 shadow-xl group">
-                <Image src="/images/services/bridal-facial.jpg" alt="For Her" fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#060e22]/90 via-transparent to-transparent" />
-                <span className="absolute bottom-3 left-3 text-xs uppercase tracking-widest text-[#d4af37] font-semibold">For Her</span>
               </div>
-              <div className="relative aspect-[3/4] rounded-lg overflow-hidden border border-[#d4af37]/40 shadow-xl group">
-                <Image src="/images/services/hair-men.jpg" alt="For Him" fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#060e22]/90 via-transparent to-transparent" />
-                <span className="absolute bottom-3 left-3 text-xs uppercase tracking-widest text-[#d4af37] font-semibold">For Him</span>
+            </ScrollReveal>
+
+            {/* Right: Images — fade-left */}
+            <ScrollReveal animation="fade-left" delay={100} className="lg:col-span-6">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="relative aspect-[3/4] rounded-lg overflow-hidden border-[3px] border-[#d4af37] group shadow-lg">
+                  <Image
+                    src="/images/services/bridal-facial.jpg"
+                    alt="For Her at 77 SALON"
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute bottom-3 left-3 bg-[#0a1a3f]/90 px-2.5 py-1 rounded border-[2px] border-[#d4af37]/50 group-hover:border-[#d4af37] transition-colors">
+                    <span className="text-xs uppercase tracking-widest text-[#d4af37] font-semibold">For Her</span>
+                  </div>
+                </div>
+                <div className="relative aspect-[3/4] rounded-lg overflow-hidden border-[3px] border-[#d4af37] group shadow-lg">
+                  <Image
+                    src="/images/services/hair-men.jpg"
+                    alt="For Him at 77 SALON"
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute bottom-3 left-3 bg-[#0a1a3f]/90 px-2.5 py-1 rounded border-[2px] border-[#d4af37]/50 group-hover:border-[#d4af37] transition-colors">
+                    <span className="text-xs uppercase tracking-widest text-[#d4af37] font-semibold">For Him</span>
+                  </div>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
         </Container>
       </section>

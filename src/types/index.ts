@@ -70,4 +70,5 @@ export interface TestimonialItem {
   review: string;
   date: string;
   verified: boolean;
+  image?: string;
 }

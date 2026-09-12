@@ -22,20 +22,51 @@ export const SITE_CONFIG = {
   navLinks: [
     { label: 'HOME', href: '/' },
     { label: 'ABOUT', href: '/about' },
-    { label: 'SERVICES', href: '/services', hasDropdown: true },
-    { label: 'PRICING', href: '/pricing' },
+    { label: 'SERVICES', href: '#', hasDropdown: true },
     { label: 'GALLERY', href: '/gallery' },
     { label: 'BRIDAL', href: '/bridal' },
     { label: 'CONTACT', href: '/contact' },
   ],
   serviceSubmenu: [
-    { label: 'Manicure', href: '/services/manicure', desc: 'Classic, Spa & Luxury Care' },
-    { label: 'Pedicure', href: '/services/pedicure', desc: 'Ice Cream, Spa & Callus Care' },
-    { label: 'Facial & Skin', href: '/services/facial', desc: 'Hydra, Bridal Glow & O3+' },
-    { label: 'Gel Polish', href: '/services/gel-polish', desc: 'Hands, Feet & Custom Art' },
-    { label: 'Nail Extension', href: '/services/nail-extension', desc: 'Acrylic, Gel & Overlays' },
-    { label: 'Hair – Women', href: '/services/hair-women', desc: 'Spa, Styling, Colour & Cuts' },
-    { label: 'Hair – Men', href: '/services/hair-men', desc: 'Grooming, Beard & Hair Spa' },
-    { label: 'Waxing & Body Care', href: '/services/waxing', desc: 'Honey, Rica & Body Polishing' },
+    {
+      label: 'Manicure Rituals',
+      href: '/services/manicure',
+      desc: 'Nail shaping, cuticle care, hand massages & polish',
+    },
+    {
+      label: 'Pedicure Treatments',
+      href: '/services/pedicure',
+      desc: 'Foot soak, callus smoothing & Ice Cream paraffin spa',
+    },
+    {
+      label: 'Facial & Skin Care',
+      href: '/services/facial',
+      desc: 'Hydra facials, clean-ups & skin luminescence',
+    },
+    {
+      label: 'Gel Polish',
+      href: '/services/gel-polish',
+      desc: 'Long-lasting high-shine gel colors & French tips',
+    },
+    {
+      label: 'Nail Extensions',
+      href: '/services/nail-extension',
+      desc: 'Sculpted acrylics, gel extensions & ombre art',
+    },
+    {
+      label: 'Hair – Women',
+      href: '/services/hair-women',
+      desc: 'Moroccan Argan Spas, French Balayage & styling',
+    },
+    {
+      label: 'Hair & Grooming – Men',
+      href: '/services/hair-men',
+      desc: 'Precision haircuts, beard contouring & scalp therapy',
+    },
+    {
+      label: 'Waxing & Body Care',
+      href: '/services/waxing',
+      desc: 'Rica wax rituals, threading & body polishing',
+    },
   ],
 };

@@ -7,27 +7,26 @@ import { InstagramIcon, FacebookIcon } from '@/components/ui/Icons';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="relative bg-[#060e22] text-[#f8fafc] border-t border-[#d4af37]/30 pt-16 pb-10 overflow-hidden">
-      {/* Background Salon Image with Low Opacity */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <Image
-          src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80"
-          alt="77 SALON Ambiance Background"
-          fill
-          className="object-cover object-center opacity-15"
-          sizes="100vw"
+    <footer className="relative bg-[#060e22] text-[#f8fafc] border-t-[3px] border-[#d4af37]/60 pt-16 pb-10 overflow-hidden">
+      {/* Background Image Texture */}
+      <div className="absolute inset-0 opacity-40 z-0 pointer-events-none">
+        <Image 
+          src="/images/hero/hair.jpg" 
+          alt="Luxury Salon Atmosphere" 
+          fill 
+          className="object-cover grayscale"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#060e22]/85 via-[#060e22]/70 to-[#060e22]/95" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#060e22] via-[#060e22]/50 to-[#060e22]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-[#d4af37]/20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b-[3px] border-[#d4af37]/50">
           {/* Col 1: Brand & Ethos (4 cols) */}
           <div className="lg:col-span-4 space-y-5">
             <Link href="/" className="inline-block group">
-              <div className="relative w-52 h-20 transition-transform duration-300 group-hover:scale-105">
+              <div className="relative w-64 h-24">
                 <Image
-                  src="/brand-logo.png"
+                  src="/logo-transparent.png"
                   alt="77 SALON"
                   fill
                   className="object-contain object-left drop-shadow-[0_2px_15px_rgba(212,175,55,0.3)]"
@@ -35,7 +34,7 @@ export const Footer: React.FC = () => {
               </div>
             </Link>
             <p className="text-xs sm:text-sm text-[#cbd5e1] leading-relaxed font-light max-w-sm">
-              An elevated sanctuary dedicated to beauty, holistic hair health, precision nail architecture, and clinical skin rejuvenation. Every appointment is an individualized ritual.
+              An elevated sanctuary dedicated to beauty, holistic hair health, precision nail architecture, and skin rejuvenation. Every appointment is an individualized ritual.
             </p>
             <div className="pt-2 flex items-center gap-4 text-[#cbd5e1]">
               <a
@@ -75,16 +74,7 @@ export const Footer: React.FC = () => {
                   About
                 </Link>
               </li>
-              <li>
-                <Link href="/services" className="hover:text-[#d4af37] transition-colors">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/pricing" className="hover:text-[#d4af37] transition-colors">
-                  Pricing Menu
-                </Link>
-              </li>
+
               <li>
                 <Link href="/gallery" className="hover:text-[#d4af37] transition-colors">
                   Editorial Gallery
@@ -125,12 +115,12 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/services/gel-polish" className="hover:text-[#d4af37] transition-colors">
+                <Link href="/services/manicure" className="hover:text-[#d4af37] transition-colors">
                   Gel Polish & Chrome Art
                 </Link>
               </li>
               <li>
-                <Link href="/services/nail-extension" className="hover:text-[#d4af37] transition-colors">
+                <Link href="/services/manicure" className="hover:text-[#d4af37] transition-colors">
                   Gel & Acrylic Extensions
                 </Link>
               </li>
@@ -145,7 +135,7 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/services/waxing" className="hover:text-[#d4af37] transition-colors">
+                <Link href="/services/skin-care" className="hover:text-[#d4af37] transition-colors">
                   Waxing & Italian Rica Body Care
                 </Link>
               </li>
@@ -186,7 +176,7 @@ export const Footer: React.FC = () => {
 
             <div className="pt-2">
               <Link
-                href="/book"
+                href="/contact"
                 className="inline-flex items-center justify-between w-full p-3 bg-[#0a1a3f] border border-[#d4af37]/40 hover:border-[#d4af37] hover:bg-[#d4af37] hover:text-[#060e22] text-[#d4af37] text-xs uppercase tracking-widest font-semibold transition-all group shadow-md rounded-md"
               >
                 <span>Reserve Appointment</span>

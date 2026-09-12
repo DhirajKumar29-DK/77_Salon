@@ -1,101 +1,118 @@
 import React from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/Button';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { ArrowRight } from 'lucide-react';
 
 export const UnisexSplitSection: React.FC = () => {
   return (
-    <section className="bg-[#060e22] text-[#f8fafc] py-16 lg:py-20 relative border-t border-b border-[#d4af37]/25">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
-        <span className="text-[11px] uppercase tracking-[0.3em] text-[#d4af37] font-semibold block mb-2">
-          Egalitarian Luxury
-        </span>
-        <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-tight">
-          Tailored Care for Every Client.
-        </h2>
-        <p className="mt-3 text-xs sm:text-sm text-[#cbd5e1] font-light max-w-xl mx-auto">
-          77 SALON is curated for modern elegance — offering specialized styling, restorative spas, and meticulous grooming for both women and men.
-        </p>
+    <section className="bg-[#0a1a3f] text-[#f8fafc] py-14 sm:py-20 relative border-t border-[#d4af37]/20 overflow-hidden">
+      {/* Subtle dark radial glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at 50% 50%, rgba(212,175,55,0.04) 0%, transparent 70%)',
+        }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16">
+        <ScrollReveal animation="fade-down">
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <span className="w-12 h-[1px] bg-gradient-to-r from-transparent to-[#d4af37]" />
+              <span className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-[#d4af37] font-bold">
+                Egalitarian Luxury
+              </span>
+              <span className="w-12 h-[1px] bg-gradient-to-l from-transparent to-[#d4af37]" />
+            </div>
+            <h2 className="font-antic text-4xl sm:text-5xl md:text-6xl font-light text-[#fdfbf5] tracking-tight leading-[1.15] mb-6">
+              Tailored Care for<br className="hidden sm:block" /> <span className="text-[#d4af37] italic">Every Client.</span>
+            </h2>
+            <p className="text-[#cbd5e1] text-sm sm:text-base font-light max-w-2xl mx-auto leading-relaxed">
+              77 SALON is curated for modern elegance — offering specialized styling, restorative spas, and meticulous grooming for both women and men.
+            </p>
+          </div>
+        </ScrollReveal>
       </div>
 
       {/* Split Screen 50/50 Layout */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-          {/* Panel 1: For Her */}
-          <div className="relative group overflow-hidden bg-[#0a1a3f] border border-[#d4af37]/40 min-h-[520px] flex flex-col justify-end p-8 sm:p-12 shadow-2xl rounded-lg">
-            <div className="absolute inset-0 z-0">
-              <Image
-                src="/images/services/bridal-facial.jpg"
-                alt="For Her treatments at 77 SALON"
-                fill
-                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 opacity-100"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-[#0A1128]/95 via-[#0A1128]/50 to-transparent" />
-            </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+          {/* Panel 1: For Her (Left Card - fades in from left) */}
+          <ScrollReveal animation="fade-right" delay={100} className="h-full">
+            <div className="relative group overflow-hidden bg-[#060e22] border border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-colors duration-500 min-h-[450px] sm:min-h-[500px] flex flex-col justify-end p-8 sm:p-12 rounded-lg cursor-pointer">
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/images/brand/home_hero_hair.jpg"
+                  alt="For Her treatments at 77 SALON"
+                  fill
+                  className="object-cover object-center opacity-100 transition-transform duration-1000 ease-out group-hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#060e22] via-[#060e22]/60 to-transparent" />
+              </div>
 
-            <div className="relative z-10 space-y-4">
-              <span className="inline-block text-[11px] uppercase tracking-[0.3em] text-[#d4af37] font-medium border-b border-[#d4af37]/40 pb-1">
-                Refined Elegance
-              </span>
-              <h3 className="font-serif text-4xl sm:text-5xl font-light text-white tracking-wide">
-                FOR HER
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-200 font-light leading-relaxed max-w-md">
-                From Moroccan Argan Hair Spas and Global Hair Colour to Hydra Facials, Bridal Glow treatments, French gel polish, and sculpted extensions.
-              </p>
+              <div className="relative z-10 space-y-4">
+                <span className="inline-block text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-[#d4af37] font-semibold border-b border-[#d4af37]/40 pb-1.5">
+                  Refined Elegance
+                </span>
+                <h3 className="font-antic text-4xl sm:text-5xl font-light text-[#fdfbf5] tracking-tight">
+                  FOR HER
+                </h3>
+                <p className="text-sm text-[#cbd5e1] font-light leading-relaxed max-w-sm mb-6">
+                  From Moroccan Argan Hair Spas and Global Hair Colour to Hydra Facials, Bridal Glow treatments, French gel polish, and sculpted extensions.
+                </p>
 
-              <div className="pt-2">
-                <Button
-                  href="/services/hair-women"
-                  variant="primary"
-                  size="md"
-                  className="font-semibold shadow-lg"
-                >
-                  Explore Women’s Services
-                  <ArrowRight className="w-3.5 h-3.5 ml-2" />
-                </Button>
+                <div className="pt-4">
+                  <Link
+                    href="/services/hair-women"
+                    className="inline-flex items-center text-[#d4af37] text-xs font-bold uppercase tracking-[0.2em] group/btn hover:text-[#fdfbf5] transition-colors"
+                  >
+                    Explore Women's Services
+                    <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
-          {/* Panel 2: For Him */}
-          <div className="relative group overflow-hidden bg-[#0a1a3f] border border-[#d4af37]/40 min-h-[520px] flex flex-col justify-end p-8 sm:p-12 shadow-2xl rounded-lg">
-            <div className="absolute inset-0 z-0">
-              <Image
-                src="/images/services/hair-men.jpg"
-                alt="For Him grooming at 77 SALON"
-                fill
-                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 opacity-100"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-[#0A1128]/95 via-[#0A1128]/50 to-transparent" />
-            </div>
+          {/* Panel 2: For Him (Right Card - fades in from right) */}
+          <ScrollReveal animation="fade-left" delay={200} className="h-full">
+            <div className="relative group overflow-hidden bg-[#060e22] border border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-colors duration-500 min-h-[450px] sm:min-h-[500px] flex flex-col justify-end p-8 sm:p-12 rounded-lg cursor-pointer">
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/images/services/hair-men.jpg"
+                  alt="For Him grooming at 77 SALON"
+                  fill
+                  className="object-cover object-center opacity-100 transition-transform duration-1000 ease-out group-hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+                <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#060e22] via-[#060e22]/60 to-transparent" />
+              </div>
 
-            <div className="relative z-10 space-y-4">
-              <span className="inline-block text-[11px] uppercase tracking-[0.3em] text-[#d4af37] font-medium border-b border-[#d4af37]/40 pb-1">
-                Executive Precision
-              </span>
-              <h3 className="font-serif text-4xl sm:text-5xl font-light text-white tracking-wide">
-                FOR HIM
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-200 font-light leading-relaxed max-w-md">
-                Precision taper and fade haircuts, hot-towel clean shaves, beard contouring & colour, Keratin scalp therapy, and invigorating head oil massages.
-              </p>
+              <div className="relative z-10 space-y-4">
+                <span className="inline-block text-[10px] sm:text-[11px] uppercase tracking-[0.3em] text-[#d4af37] font-semibold border-b border-[#d4af37]/40 pb-1.5">
+                  Executive Precision
+                </span>
+                <h3 className="font-antic text-4xl sm:text-5xl font-light text-[#fdfbf5] tracking-tight">
+                  FOR HIM
+                </h3>
+                <p className="text-sm text-[#cbd5e1] font-light leading-relaxed max-w-sm mb-6">
+                  Precision taper and fade haircuts, hot-towel clean shaves, beard contouring & colour, Keratin scalp therapy, and invigorating head oil massages.
+                </p>
 
-              <div className="pt-2">
-                <Button
-                  href="/services/hair-men"
-                  variant="primary"
-                  size="md"
-                  className="font-semibold shadow-lg"
-                >
-                  Explore Men’s Services
-                  <ArrowRight className="w-3.5 h-3.5 ml-2" />
-                </Button>
+                <div className="pt-4">
+                  <Link
+                    href="/services/hair-men"
+                    className="inline-flex items-center text-[#d4af37] text-xs font-bold uppercase tracking-[0.2em] group/btn hover:text-[#fdfbf5] transition-colors"
+                  >
+                    Explore Men's Services
+                    <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

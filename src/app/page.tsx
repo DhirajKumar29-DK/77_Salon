@@ -1,63 +1,32 @@
 import React from 'react';
 import { HeroSection } from '@/components/home/HeroSection';
 import { IntroSection } from '@/components/home/IntroSection';
-import { SignatureServices } from '@/components/home/SignatureServices';
-import { CategoryGrid } from '@/components/home/CategoryGrid';
-import { UnisexSplitSection } from '@/components/home/UnisexSplitSection';
+import { UnifiedSignatureShowcase } from '@/components/home/UnifiedSignatureShowcase';
 import { HairExperienceSection } from '@/components/home/HairExperienceSection';
-import { SkinFacialSection } from '@/components/home/SkinFacialSection';
-import { NailArtistrySection } from '@/components/home/NailArtistrySection';
-import { GalleryPreviewSection } from '@/components/home/GalleryPreviewSection';
 import { BridalSpotlight } from '@/components/home/BridalSpotlight';
-import { PricingPreviewSection } from '@/components/home/PricingPreviewSection';
-import { ExperiencePhilosophy } from '@/components/home/ExperiencePhilosophy';
 import { TestimonialsSection } from '@/components/home/TestimonialsSection';
-import { FinalCTA } from '@/components/home/FinalCTA';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 export default function HomePage() {
   return (
     <>
-      {/* Section 1: Hero */}
+      {/* 1. Hero Section: Editorial Crossfade & Dual CTAs */}
       <HeroSection />
 
-      {/* Section 2: Brand Intro */}
+      {/* 2. Atelier Intro: Heritage & 3 Pillars (Style, Beauty, Care) */}
       <IntroSection />
 
-      {/* Section 3: Signature Services */}
-      <SignatureServices />
+      {/* 3. Unified Signature Showcase: Consolidated Hair, Skin, Nails, Bridal */}
+      <UnifiedSignatureShowcase />
 
-      {/* Section 4: Service Categories */}
-      <CategoryGrid />
-
-      {/* Section 5: Women / Men Split */}
-      <UnisexSplitSection />
-
-      {/* Section 6: Hair Experience */}
+      {/* 5. Hair Atelier: Bespoke Hair Health */}
       <HairExperienceSection />
 
-      {/* Section 7: Beauty / Skin */}
-      <SkinFacialSection />
-
-      {/* Section 8: Nails */}
-      <NailArtistrySection />
-
-      {/* Section 9: Gallery Preview */}
-      <GalleryPreviewSection />
-
-      {/* Section 10: Bridal */}
+      {/* 6. Bridal Suite: Luminous Perfection */}
       <BridalSpotlight />
 
-      {/* Section 11: Pricing Preview */}
-      <PricingPreviewSection />
-
-      {/* Section 12: Experience / Philosophy */}
-      <ExperiencePhilosophy />
-
-      {/* Section 13: Testimonials */}
+      {/* 8. Guest Reflections: Verified Testimonials */}
       <TestimonialsSection />
-
-      {/* Section 14: Final CTA (Removed per user request) */}
-      {/* <FinalCTA /> */}
     </>
   );
 }

@@ -35,22 +35,38 @@ export const Button: React.FC<ButtonProps> = ({
 
   const variantClasses = {
     primary:
-      'bg-gradient-to-r from-[#b57c2b] via-[#d4af37] to-[#e5c568] text-[#060e22] font-semibold hover:shadow-[0_4px_25px_rgba(212,175,55,0.35)] hover:brightness-110 border border-[#d4af37]',
+      'bg-gradient-to-r from-[#b57c2b] via-[#d4af37] to-[#e5c568] text-[#060e22] font-semibold hover:shadow-[0_4px_25px_rgba(212,175,55,0.4)] hover:brightness-105 border border-[#d4af37]',
     secondary:
       'bg-[#0a1a3f] text-[#f8fafc] hover:bg-[#0f2352] border border-[#d4af37]/50 hover:border-[#d4af37]',
     navy:
-      'bg-[#060e22] text-[#f8fafc] hover:bg-[#0a1a3f] border border-[#d4af37]/40',
+      'bg-[#060e22] text-[#f8fafc] hover:bg-[#0a1a3f] border border-[#d4af37]/40 hover:border-[#d4af37]',
     outline:
-      'bg-transparent text-[#f8fafc] border border-[#cbd5e1]/40 hover:border-[#d4af37] hover:text-[#d4af37] hover:bg-[#d4af37]/10',
+      'bg-transparent text-[#e2e8f0] border border-[#e2e8f0]/40 hover:border-[#d4af37] hover:text-[#d4af37] hover:bg-[#d4af37]/10',
     'outline-white':
       'bg-transparent text-[#f8fafc] border border-[#cbd5e1]/40 hover:border-[#d4af37] hover:text-[#d4af37] hover:bg-[#d4af37]/10',
     ghost:
       'bg-transparent text-[#cbd5e1] hover:text-[#d4af37] p-0 border-none',
   };
 
-  const combinedClasses = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${
+  let finalSize = size;
+  let finalClassName = className;
+
+  if (variant === 'primary') {
+    finalSize = 'sm';
+    // Remove conflicting font-weights or tracking
+    finalClassName = finalClassName
+      .replace(/font-(light|normal|medium|bold|extrabold|black)/g, '')
+      .replace(/tracking-[a-z0-9\[\]\.-]+/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    
+    // Add exact Navbar button typographies
+    finalClassName += ' font-semibold tracking-[0.2em]';
+  }
+
+  const combinedClasses = `${baseClasses} ${sizeClasses[finalSize]} ${variantClasses[variant]} ${
     disabled ? 'opacity-50 pointer-events-none' : ''
-  } ${className}`;
+  } ${finalClassName}`.trim();
 
   if (href) {
     if (external) {

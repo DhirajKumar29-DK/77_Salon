@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Roboto, Playfair_Display, EB_Garamond, Antic_Didone } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -8,6 +8,28 @@ const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
   weight: ["300", "400", "500", "700", "900"],
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-antic",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const garamond = EB_Garamond({
+  variable: "--font-antic",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const antic = Antic_Didone({
+  variable: "--font-antic",
+  subsets: ["latin"],
+  weight: ["400"],
   display: "swap",
 });
 
@@ -55,14 +77,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${roboto.variable} h-full antialiased scroll-smooth`}
+      className={`${roboto.variable} ${playfair.variable} ${garamond.variable} ${antic.variable} h-full antialiased scroll-smooth overflow-x-hidden`}
     >
       <head>
         <link rel="icon" href="/fav_logo.png?v=77" type="image/png" />
         <link rel="shortcut icon" href="/fav_logo.png?v=77" type="image/png" />
         <link rel="apple-touch-icon" href="/fav_logo.png?v=77" />
       </head>
-      <body className="min-h-full flex flex-col bg-[#0a1a3f] text-[#f8fafc] font-sans selection:bg-[#d4af37] selection:text-[#0a1a3f]">
+      <body className="min-h-full flex flex-col bg-[#0a1a3f] text-[#f8fafc] font-sans selection:bg-[#d4af37] selection:text-[#faf7f2]">
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />

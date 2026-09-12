@@ -4,240 +4,318 @@ import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ALL_SERVICES } from '@/data/services';
-import { Search, Sparkles, Clock, ArrowRight, Printer } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Sparkles, ArrowRight, Diamond, ShieldCheck, Heart, Leaf, BookOpen } from 'lucide-react';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
-interface FilterTab {
-  id: string;
-  label: string;
-}
-
-const TABS: FilterTab[] = [
-  { id: 'all', label: 'All Services' },
-  { id: 'nails', label: 'Nails (Mani, Pedi, Extensions)' },
-  { id: 'facial', label: 'Facial & Skin' },
-  { id: 'hair-women', label: 'Hair – Women' },
-  { id: 'hair-men', label: 'Hair & Grooming – Men' },
-  { id: 'waxing', label: 'Waxing & Body Care' },
+/* ─── Category config ───────────────────────────────────────────── */
+const CATEGORIES = [
+  {
+    id: 'manicure',
+    label: 'Manicure',
+    subtitle: 'Hand Care Treatments',
+    desc: 'Indulge in expert nail care designed to keep your hands healthy, beautiful and always ready for what\'s next.',
+    tagline: 'Beautiful hands. Every day.',
+    script: 'Care\nin every\ndetail',
+    image: '/images/services/manicure.jpg',
+    thumb: '/images/services/manicure.jpg',
+    filter: (c: string) => c === 'manicure',
+  },
+  {
+    id: 'pedicure',
+    label: 'Pedicure',
+    subtitle: 'Foot Care Rituals',
+    desc: 'Revive tired feet with our restorative pedicure rituals — from classic care to luxurious paraffin treatments.',
+    tagline: 'Happy feet. Always.',
+    script: 'Step into\nluxury',
+    image: '/images/services/pedicure.jpg',
+    thumb: '/images/services/pedicure.jpg',
+    filter: (c: string) => c === 'pedicure',
+  },
+  {
+    id: 'facial',
+    label: 'Facial & Skin',
+    subtitle: 'Skin Renewal Treatments',
+    desc: 'Radiant, luminous skin starts here. Our expert facials restore, hydrate, and illuminate your natural glow.',
+    tagline: 'Glow from within.',
+    script: 'Radiant\nskin awaits',
+    image: '/images/services/facial.jpg',
+    thumb: '/images/services/facial.jpg',
+    filter: (c: string) => c === 'facial',
+  },
+  {
+    id: 'gel-polish',
+    label: 'Gel Polish',
+    subtitle: 'Long-Lasting Colour',
+    desc: 'High-shine gel colours with chip-free finish. Hands, feet & custom nail art — built to last.',
+    tagline: 'Colour that lasts.',
+    script: 'Bold\ncolour,\nbold you',
+    image: '/images/services/gel-polish.jpg',
+    thumb: '/images/services/gel-polish.jpg',
+    filter: (c: string) => c === 'gel-polish',
+  },
+  {
+    id: 'nail-extension',
+    label: 'Nail Extension',
+    subtitle: 'Sculpted Nail Artistry',
+    desc: 'Acrylic, gel overlays and chrome art — precision sculpting for your dream nails.',
+    tagline: 'Your nails, perfected.',
+    script: 'Art on\nyour tips',
+    image: '/images/services/nail-extension.jpg',
+    thumb: '/images/services/nail-extension.jpg',
+    filter: (c: string) => c === 'nail-extension',
+  },
+  {
+    id: 'hair-women',
+    label: 'Hair – Women',
+    subtitle: 'Women\'s Hair Services',
+    desc: 'Moroccan Argan spas, French balayage, precision cuts & blowouts — bespoke hair for every woman.',
+    tagline: 'Your best hair day.',
+    script: 'Styled\nwith care',
+    image: '/images/services/bridal-facial.jpg',
+    thumb: '/images/services/bridal-facial.jpg',
+    filter: (c: string) => c === 'hair-women-spa' || c === 'hair-women-styling',
+  },
+  {
+    id: 'hair-men',
+    label: 'Hair & Grooming – Men',
+    subtitle: 'Men\'s Grooming Services',
+    desc: 'Precision haircuts, beard contouring, scalp therapy & Moroccan hair spas for the modern man.',
+    tagline: 'Sharp. Confident. You.',
+    script: 'Precision\ngrooming',
+    image: '/images/services/hair-men.jpg',
+    thumb: '/images/services/hair-men.jpg',
+    filter: (c: string) => c === 'hair-men-spa' || c === 'hair-men-grooming',
+  },
+  {
+    id: 'waxing',
+    label: 'Waxing & Body Care',
+    subtitle: 'Body Hair & Polishing',
+    desc: 'Rica wax rituals, honey wax, threading & full-body polishing for smooth, radiant skin.',
+    tagline: 'Smooth, always.',
+    script: 'Silky\nsmooth skin',
+    image: '/images/services/waxing.jpg',
+    thumb: '/images/services/waxing.jpg',
+    filter: (c: string) => c === 'waxing',
+  },
 ];
 
-const getCategoryBanner = (name: string): string => {
-  const n = name.toLowerCase();
-  if (n.includes('manicure')) return 'https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?auto=format&fit=crop&w=1200&q=80';
-  if (n.includes('pedicure')) return 'https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?auto=format&fit=crop&w=1200&q=80';
-  if (n.includes('facial') || n.includes('clean-up')) return 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=80';
-  if (n.includes('gel polish')) return 'https://images.unsplash.com/photo-1629732047847-50219e9c5aef?auto=format&fit=crop&w=1200&q=80';
-  if (n.includes('nail extension') || n.includes('extension')) return 'https://images.unsplash.com/photo-1629732047847-50219e9c5aef?auto=format&fit=crop&w=1200&q=80';
-  if (n.includes('women') || n.includes('bridal')) return 'https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1200&q=80';
-  if (n.includes('men') || n.includes('grooming') || n.includes('beard') || n.includes('shav')) return 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1200&q=80';
-  if (n.includes('wax') || n.includes('thread') || n.includes('polish')) return 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80';
-  return 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80';
-};
 
-export const PricingMenu: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>('all');
-  const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const filteredServices = useMemo(() => {
-    return ALL_SERVICES.filter((svc) => {
-      // Tab filter
-      if (activeTab === 'nails') {
-        if (
-          svc.category !== 'manicure' &&
-          svc.category !== 'pedicure' &&
-          svc.category !== 'gel-polish' &&
-          svc.category !== 'nail-extension'
-        ) {
-          return false;
-        }
-      } else if (activeTab === 'facial') {
-        if (svc.category !== 'facial') return false;
-      } else if (activeTab === 'hair-women') {
-        if (svc.category !== 'hair-women-spa' && svc.category !== 'hair-women-styling') {
-          return false;
-        }
-      } else if (activeTab === 'hair-men') {
-        if (svc.category !== 'hair-men-spa' && svc.category !== 'hair-men-grooming') {
-          return false;
-        }
-      } else if (activeTab === 'waxing') {
-        if (svc.category !== 'waxing') return false;
-      }
+/* ─── Component ─────────────────────────────────────────────────── */
+interface PricingMenuProps {
+  initialCategory?: string;
+}
 
-      // Search filter
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase();
-        return (
-          svc.name.toLowerCase().includes(q) ||
-          svc.description.toLowerCase().includes(q) ||
-          svc.categoryName.toLowerCase().includes(q)
-        );
-      }
+export const PricingMenu: React.FC<PricingMenuProps> = ({ initialCategory }) => {
+  const [activeId, setActiveId] = useState(
+    initialCategory && CATEGORIES.find((c) => c.id === initialCategory)
+      ? initialCategory
+      : 'manicure'
+  );
 
-      return true;
-    });
-  }, [activeTab, searchQuery]);
+  const activeCat = CATEGORIES.find((c) => c.id === activeId)!;
 
-  // Group filtered services by Category for elegant editorial menu display
-  const groupedServices = useMemo(() => {
-    const groups: { [key: string]: typeof ALL_SERVICES } = {};
-    filteredServices.forEach((svc) => {
-      if (!groups[svc.categoryName]) {
-        groups[svc.categoryName] = [];
-      }
-      groups[svc.categoryName].push(svc);
-    });
-    return groups;
-  }, [filteredServices]);
+  const services = useMemo(
+    () => ALL_SERVICES.filter((s) => activeCat.filter(s.category)),
+    [activeCat]
+  );
 
   return (
-    <div className="space-y-12">
-      {/* Search & Navigation Bar */}
-      <div className="bg-[#060e22] text-[#f8fafc] p-6 sm:p-8 border border-[#d4af37]/40 shadow-2xl rounded-lg">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#d4af37]" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search price menu (e.g. Hydra, Moroccon, Gel, Honey)..."
-              className="w-full bg-[#0a1a3f] border border-[#d4af37]/30 pl-11 pr-4 py-3 text-xs sm:text-sm text-[#f8fafc] placeholder-[#94a3b8] focus:outline-none focus:border-[#d4af37] transition-colors rounded-md"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#cbd5e1] hover:text-[#d4af37]"
-              >
-                Clear
-              </button>
-            )}
-          </div>
+    <div className="min-h-screen bg-[#060e22]">
 
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => window.print()}
-              className="inline-flex items-center gap-1.5 px-4 py-3 text-xs uppercase tracking-wider text-[#cbd5e1] border border-[#d4af37]/40 hover:border-[#d4af37] hover:text-[#d4af37] transition-colors rounded-md"
-            >
-              <Printer className="w-3.5 h-3.5 text-[#d4af37]" />
-              Print Menu
-            </button>
-          </div>
+      {/* ── Clean PageHero-style header ──────────────────────────── */}
+      <section className="relative pt-28 pb-12 sm:pt-32 sm:pb-16 bg-[#060e22] text-[#f8fafc] overflow-hidden border-b border-[#d4af37]/30">
+        {/* Fixed background image — clean salon ambience */}
+        <div className="absolute inset-0 z-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1920&q=85"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#060e22]/90 via-[#060e22]/50 to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#060e22]/90 to-transparent" />
         </div>
 
-        {/* Tab Pills */}
-        <div className="mt-6 pt-6 border-t border-[#d4af37]/20 flex flex-wrap gap-2">
-          {TABS.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`px-4 py-2 text-xs uppercase tracking-wider transition-all duration-200 rounded-md ${
-                activeTab === tab.id
-                  ? 'bg-[#d4af37] text-[#060e22] font-semibold shadow-md'
-                  : 'bg-[#0a1a3f] text-[#cbd5e1] hover:bg-[#0f2352] hover:text-[#f8fafc] border border-[#d4af37]/20'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center pt-6">
+          {/* Breadcrumb */}
+          <nav className="flex items-center justify-center gap-2 text-[10px] text-[#cbd5e1] mb-5 uppercase tracking-wider">
+            <Link href="/">Home</Link>
+            <span className="text-white/40">/</span>
+            <span className="text-[#d4af37]">Pricing</span>
+            <span className="text-white/40">/</span>
+            <span className="text-[#d4af37]">{activeCat.label}</span>
+          </nav>
+
+          <span className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] font-bold mb-3">Price Book</span>
+          <h1 className="font-antic font-light text-4xl sm:text-5xl md:text-6xl text-[#f8fafc] leading-[1.1] drop-shadow-lg mb-4">
+            Transparent Treatment Pricing.
+          </h1>
+          <p className="text-[#cbd5e1] text-base font-light max-w-2xl">
+            Every treatment at 77 SALON is delivered with transparent, published rates. Select a category to explore.
+          </p>
+        </div>
+      </section>
+
+
+      {/* ── Main Content: Sidebar + Price Table ─────────────────── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="flex gap-8 items-start">
+
+          {/* ── Left Sidebar ──────────────────────────────────────── */}
+          <aside className="hidden lg:flex flex-col w-56 shrink-0 sticky top-24 gap-1">
+            <h3 className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] font-bold mb-4">
+              Our Services
+            </h3>
+
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setActiveId(cat.id)}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all duration-200 group ${
+                  activeId === cat.id
+                    ? 'bg-[#d4af37]/10 border-l-2 border-[#d4af37] text-[#d4af37]'
+                    : 'border-l-2 border-transparent text-[#94a3b8] hover:text-[#e2e8f0] hover:border-[#d4af37]/40'
+                }`}
+              >
+                <span className="text-sm font-semibold">{cat.label}</span>
+              </button>
+            ))}
+
+            {/* Bottom CTA Card */}
+            <div className="mt-6 relative overflow-hidden rounded-xl border border-[#d4af37]/30">
+              <div className="relative h-32">
+                <Image
+                  src="/images/services/manicure.jpg"
+                  alt="Book Appointment"
+                  fill
+                  className="object-cover"
+                  sizes="200px"
+                />
+                <div className="absolute inset-0 bg-[#060e22]/70" />
+              </div>
+              <div className="p-4 bg-[#0a1a3f]">
+                <p className="text-[10px] uppercase tracking-widest text-[#d4af37] font-bold mb-1">Self Care</p>
+                <p className="text-sm font-bold text-white leading-tight mb-3">LOOKS GOOD ON YOU</p>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-wider bg-[#d4af37] text-[#060e22] px-3 py-2 font-bold hover:bg-[#e5c568] transition-colors w-full justify-center"
+                >
+                  Book Appointment
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+          </aside>
+
+          {/* ── Right: Price Table ────────────────────────────────── */}
+          <div className="flex-1 min-w-0">
+
+            {/* Section Header */}
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-10 pb-6 border-b border-[#d4af37]/20">
+              <div>
+                <span className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] font-bold block mb-2">
+                  {activeCat.label}
+                </span>
+                <h2 className="font-antic text-4xl sm:text-5xl font-light text-white leading-tight">
+                  {activeCat.subtitle}
+                </h2>
+              </div>
+              <p className="text-sm text-[#7d8fa3] font-light leading-relaxed max-w-xs sm:text-right">
+                {activeCat.desc}
+              </p>
+            </div>
+
+            {/* Numbered Service List */}
+            <div className="space-y-0">
+              {services.map((svc, idx) => (
+                <ScrollReveal key={svc.id} animation={idx % 2 === 0 ? 'fade-right' : 'fade-left'} delay={(idx % 2) * 150}>
+                <div
+                  className="group flex items-center gap-5 py-5 border-b border-[#d4af37]/10 hover:border-[#d4af37]/40 transition-all duration-200"
+                >
+                  {/* Number */}
+                  <span className="text-2xl font-light text-[#d4af37]/30 w-8 shrink-0 tabular-nums">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
+
+                  {/* Name + Desc */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-sans text-lg sm:text-xl font-semibold text-[#e2e8f0] group-hover:text-[#d4af37] transition-colors">
+                        {svc.name}
+                      </span>
+                      {svc.isSignature && (
+                        <span className="inline-flex items-center gap-1 text-[9px] uppercase tracking-wider px-2 py-0.5 bg-[#d4af37]/15 text-[#d4af37] font-bold rounded border border-[#d4af37]/30">
+                          <Sparkles className="w-2.5 h-2.5" />
+                          Signature
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs text-[#7d8fa3] font-light mt-0.5 leading-relaxed">
+                      {svc.description}
+                    </p>
+                  </div>
+
+                  {/* Price */}
+                  <span className="font-serif text-2xl text-[#d4af37] font-semibold shrink-0">
+                    {svc.formattedPrice}
+                  </span>
+
+                  {/* Book Button */}
+                  <Link
+                    href="/contact"
+                    className="px-4 py-1.5 bg-[#d4af37] text-[#060e22] text-[10px] uppercase tracking-widest font-bold hover:bg-[#e5c568] transition-colors rounded whitespace-nowrap shrink-0"
+                  >
+                    Book
+                  </Link>
+                </div>
+                </ScrollReveal>
+              ))}
+            </div>
+
+            {/* Package Promo Banner */}
+            <div className="mt-10 flex flex-col sm:flex-row items-center gap-4 p-5 bg-[#0a1a3f] border border-[#d4af37]/30 rounded-xl">
+              <Diamond className="w-8 h-8 text-[#d4af37] shrink-0" />
+              <div className="flex-1 text-center sm:text-left">
+                <h4 className="text-base font-semibold text-white">Complete {activeCat.label} Experience</h4>
+                <p className="text-xs text-[#7d8fa3] mt-0.5">
+                  Pair with a complementary service and get a special package price.
+                </p>
+              </div>
+              <Link
+                href="/contact"
+                className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 border border-[#d4af37] text-[#d4af37] text-xs uppercase tracking-widest font-bold hover:bg-[#d4af37] hover:text-[#060e22] transition-all rounded"
+              >
+                View Packages
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Pricing Sections */}
-      {Object.keys(groupedServices).length === 0 ? (
-        <div className="p-16 bg-[#0a1a3f]/80 backdrop-blur border border-[#d4af37]/30 text-center space-y-3 shadow-xl">
-          <p className="font-sans text-2xl text-[#f8fafc]">No services found matching &ldquo;{searchQuery}&rdquo;</p>
-          <p className="text-xs text-[#cbd5e1]">Please try a different search keyword or reset filters.</p>
-          <button
-            onClick={() => {
-              setActiveTab('all');
-              setSearchQuery('');
-            }}
-            className="text-xs uppercase tracking-widest text-[#d4af37] font-semibold underline"
-          >
-            Reset Filters
-          </button>
-        </div>
-      ) : (
-        <div className="space-y-16">
-          {Object.entries(groupedServices).map(([categoryName, services]) => {
-            const bannerImg = getCategoryBanner(categoryName);
-            return (
-              <div
-                key={categoryName}
-                className="bg-[#0a1a3f]/85 backdrop-blur border border-[#d4af37]/30 shadow-xl rounded-lg overflow-hidden"
-              >
-                {/* Category Image Banner */}
-                <div className="relative h-48 sm:h-56 w-full overflow-hidden bg-[#060e22]">
-                  <Image
-                    src={bannerImg}
-                    alt={categoryName}
-                    fill
-                    className="object-cover opacity-100"
-                    sizes="(max-width: 1200px) 100vw, 1200px"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0a1a3f] to-transparent" />
-                  <div className="absolute bottom-4 left-6 sm:left-10 right-6 sm:right-10 flex items-end justify-between">
-                    <div>
-                      <span className="text-[10px] uppercase tracking-[0.25em] text-[#d4af37] font-semibold block drop-shadow">
-                        Price Book Chapter
-                      </span>
-                      <h3 className="font-sans text-3xl sm:text-4xl font-light text-[#f8fafc] mt-1 drop-shadow">
-                        {categoryName}
-                      </h3>
-                    </div>
-                    <span className="text-xs uppercase tracking-wider text-[#cbd5e1] font-sans bg-[#060e22]/80 px-3 py-1 rounded border border-[#d4af37]/30">
-                      {services.length} Item{services.length === 1 ? '' : 's'}
-                    </span>
-                  </div>
+      {/* ── Bottom Trust Bar ─────────────────────────────────────── */}
+      <div className="border-t border-[#d4af37]/20 mt-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+            {[
+              { icon: <Leaf className="w-7 h-7 text-[#d4af37]" />, title: 'Premium Products', desc: 'Trusted brands for lasting care' },
+              { icon: <ShieldCheck className="w-7 h-7 text-[#d4af37]" />, title: 'Hygienic Care', desc: 'Clean, safe and comfortable environment' },
+              { icon: <Heart className="w-7 h-7 text-[#d4af37]" />, title: 'Expert Attention', desc: 'Personalized care for every client' },
+            ].map((item) => (
+              <div key={item.title} className="flex flex-col items-center gap-3">
+                <div className="w-14 h-14 rounded-full border border-[#d4af37]/30 flex items-center justify-center bg-[#0a1a3f]">
+                  {item.icon}
                 </div>
-
-                <div className="p-6 sm:p-10">
-
-              {/* Editorial Menu List */}
-              <div className="space-y-6">
-                {services.map((svc) => (
-                  <div
-                    key={svc.id}
-                    className="group flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 sm:gap-4 py-3 border-b border-dashed border-[#d4af37]/20 hover:border-[#d4af37] transition-colors"
-                  >
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <span className="font-sans text-xl sm:text-2xl text-[#f8fafc] group-hover:text-[#d4af37] transition-colors">
-                          {svc.name}
-                        </span>
-                        {svc.isSignature && (
-                          <span className="inline-flex items-center gap-1 text-[9px] uppercase tracking-wider px-2 py-0.5 bg-[#d4af37]/20 text-[#e5c568] font-semibold rounded-full border border-[#d4af37]/30">
-                            <Sparkles className="w-2.5 h-2.5" />
-                            Signature
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-xs text-[#cbd5e1] font-light mt-1 max-w-xl">
-                        {svc.description}
-                      </p>
-                    </div>
-
-                    <div className="flex items-center gap-4 shrink-0 mt-2 sm:mt-0">
-                      <span className="font-sans text-2xl sm:text-3xl text-[#d4af37] font-semibold">
-                        {svc.formattedPrice}
-                      </span>
-                      <Link
-                        href={`/book?service=${svc.id}`}
-                        className="px-3.5 py-1.5 bg-[#d4af37] text-[#060e22] hover:bg-[#e5c568] hover:shadow-[0_2px_15px_rgba(212,175,55,0.3)] text-[10px] uppercase tracking-widest font-semibold transition-all rounded-md"
-                      >
-                        Book
-                      </Link>
-                    </div>
-                  </div>
-                ))}
+                <h4 className="text-sm font-bold text-white uppercase tracking-wider">{item.title}</h4>
+                <p className="text-xs text-[#7d8fa3] font-light">{item.desc}</p>
               </div>
-            </div>
+            ))}
           </div>
-        );
-      })}
         </div>
-      )}
+      </div>
+
     </div>
   );
 };

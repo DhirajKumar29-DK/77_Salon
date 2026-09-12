@@ -1,11 +1,13 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, Suspense } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { ALL_SERVICES } from '@/data/services';
 import { ServiceItem, ServiceCategoryKey } from '@/types';
 import { Search, Sparkles, Clock, ArrowRight, Filter } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 interface CategoryTab {
   key: string;
@@ -24,10 +26,19 @@ const CATEGORY_TABS: CategoryTab[] = [
   { key: 'waxing', label: 'Waxing & Body Care' },
 ];
 
-export const ServicesDiscovery: React.FC = () => {
+function ServicesDiscoveryContent() {
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get('category');
+
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedGender, setSelectedGender] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+
+  useEffect(() => {
+    if (categoryParam) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [categoryParam]);
 
   const filteredServices = useMemo(() => {
     return ALL_SERVICES.filter((service) => {
@@ -70,7 +81,7 @@ export const ServicesDiscovery: React.FC = () => {
   return (
     <div className="space-y-12">
       {/* Search and Filter Controls */}
-      <div className="bg-[#060e22] text-[#f8fafc] p-6 sm:p-8 border border-[#d4af37]/40 shadow-2xl rounded-lg">
+      <div className="bg-[#060e22] text-[#f8fafc] p-6 sm:p-8 border border-[#d4af37]/40 rounded-lg">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           {/* Search Input */}
           <div className="relative flex-1 max-w-lg">
@@ -80,7 +91,7 @@ export const ServicesDiscovery: React.FC = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search treatments (e.g., Hydra Facial, Ice Cream Pedicure, Gel Extensions)..."
-              className="w-full bg-[#0a1a3f] border border-[#d4af37]/30 pl-11 pr-4 py-3 text-xs sm:text-sm text-[#f8fafc] placeholder-[#94a3b8] focus:outline-none focus:border-[#d4af37] transition-colors rounded-md"
+              className="w-full bg-[#0a1a3f] border border-[#d4af37]/30 pl-11 pr-4 py-3 text-xs sm:text-sm text-[#f8fafc] placeholder-slate-400 focus:outline-none focus:border-[#d4af37] transition-colors rounded-md"
             />
             {searchQuery && (
               <button
@@ -108,7 +119,7 @@ export const ServicesDiscovery: React.FC = () => {
                 onClick={() => setSelectedGender(g.id)}
                 className={`px-3.5 py-1.5 text-xs uppercase tracking-wider transition-all rounded-md ${
                   selectedGender === g.id
-                    ? 'bg-gradient-to-r from-[#b57c2b] to-[#d4af37] text-[#060e22] font-semibold shadow-md'
+                    ? 'bg-[#d4af37] text-[#060e22] font-semibold'
                     : 'bg-[#0a1a3f] text-[#cbd5e1] border border-[#d4af37]/30 hover:border-[#d4af37]'
                 }`}
               >
@@ -126,8 +137,8 @@ export const ServicesDiscovery: React.FC = () => {
               onClick={() => setSelectedCategory(tab.key)}
               className={`px-4 py-2 text-xs uppercase tracking-wider transition-all duration-200 rounded-md ${
                 selectedCategory === tab.key
-                  ? 'bg-[#d4af37] text-[#060e22] font-semibold shadow-md'
-                  : 'bg-[#0a1a3f] text-[#cbd5e1] hover:bg-[#0f2352] hover:text-[#f8fafc] border border-[#d4af37]/20'
+                  ? 'bg-[#d4af37] text-[#060e22] font-semibold'
+                  : 'bg-[#0a1a3f] text-[#cbd5e1] hover:bg-[#d4af37]/20 hover:text-[#d4af37] border border-[#d4af37]/20'
               }`}
             >
               {tab.label}
@@ -142,13 +153,13 @@ export const ServicesDiscovery: React.FC = () => {
           Showing <strong className="text-[#d4af37]">{filteredServices.length}</strong> treatment{filteredServices.length === 1 ? '' : 's'}
         </span>
         <span className="font-sans italic text-[#d4af37]/80">
-          Official 77 SALON Price Book Menu
+          77 SALON Price Book Menu
         </span>
       </div>
 
       {/* Treatment Menu List */}
       {filteredServices.length === 0 ? (
-        <div className="p-16 bg-[#0a1a3f]/80 backdrop-blur border border-[#d4af37]/30 text-center space-y-4 shadow-xl rounded-lg">
+        <div className="p-16 bg-[#0a1a3f]/80 backdrop-blur border border-[#d4af37]/30 text-center space-y-4 rounded-lg">
           <p className="font-sans text-2xl text-[#f8fafc]">No treatments found matching your criteria.</p>
           <p className="text-xs text-[#cbd5e1]">Try adjusting your search keywords or switching filters to view all treatments.</p>
           <button
@@ -164,10 +175,10 @@ export const ServicesDiscovery: React.FC = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {filteredServices.map((service) => (
+          {filteredServices.map((service, i) => (
+            <ScrollReveal key={service.id} animation={i % 2 === 0 ? 'fade-right' : 'fade-left'} delay={(i % 2) * 150}>
             <div
-              key={service.id}
-              className="group bg-[#0a1a3f]/85 backdrop-blur border border-[#d4af37]/30 hover:border-[#d4af37] p-6 sm:p-8 flex flex-col justify-between shadow-xl hover:shadow-2xl transition-all duration-300 rounded-lg"
+              className="group bg-[#0a1a3f]/85 backdrop-blur border border-[#d4af37]/30 hover:border-[#d4af37] p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 rounded-lg h-full"
             >
               <div>
                 <div className="flex items-start justify-between gap-4 mb-2">
@@ -183,7 +194,7 @@ export const ServicesDiscovery: React.FC = () => {
                         </span>
                       )}
                     </div>
-                    <h3 className="font-sans text-2xl text-[#f8fafc] group-hover:text-[#d4af37] transition-colors">
+                    <h3 className="font-antic text-2xl text-[#f8fafc] group-hover:text-[#d4af37] transition-colors">
                       {service.name}
                     </h3>
                   </div>
@@ -214,7 +225,7 @@ export const ServicesDiscovery: React.FC = () => {
                 </div>
 
                 <Link
-                  href={`/book?service=${service.id}`}
+                  href="/contact"
                   className="inline-flex items-center gap-1.5 uppercase tracking-widest text-[#d4af37] hover:text-[#060e22] hover:bg-[#d4af37] border border-[#d4af37]/40 px-3.5 py-1.5 rounded-md font-semibold text-xs group-hover:shadow-[0_2px_15px_rgba(212,175,55,0.25)] transition-all"
                 >
                   <span>Book Treatment</span>
@@ -222,9 +233,18 @@ export const ServicesDiscovery: React.FC = () => {
                 </Link>
               </div>
             </div>
+            </ScrollReveal>
           ))}
         </div>
       )}
     </div>
+  );
+}
+
+export const ServicesDiscovery: React.FC = () => {
+  return (
+    <Suspense fallback={<div className="text-center py-12 text-sm text-[#cbd5e1]">Loading services...</div>}>
+      <ServicesDiscoveryContent />
+    </Suspense>
   );
 };

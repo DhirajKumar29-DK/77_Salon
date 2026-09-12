@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer theme {
   :root {
     --color-navy: #0a1a3f;
@@ -32,6 +36,9 @@
   --font-serif: var(--font-roboto), "Roboto", sans-serif;
   --font-sans: var(--font-roboto), "Roboto", sans-serif;
   --font-roboto: var(--font-roboto), "Roboto", sans-serif;
+  --font-playfair: var(--font-playfair), "Playfair Display", serif;
+  --font-garamond: var(--font-garamond), "EB Garamond", serif;
+  --font-antic: var(--font-antic), 'Antic Didone', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
 }
 
 html {
@@ -39,8 +46,11 @@ html {
   background-color: #0a1a3f;
   color: #f8fafc;
   font-family: var(--font-roboto), "Roboto", sans-serif !important;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE & Edge */
+  overflow-x: hidden;
 }
 
 /* Hide scrollbar globally for Chrome, Safari, Edge, Opera */
@@ -55,7 +65,7 @@ body::-webkit-scrollbar,
 *,
 *::before,
 *::after {
-  font-family: var(--font-roboto), "Roboto", -apple-system, BlinkMacSystemFont, sans-serif !important;
+  /* Removed aggressive font-family override */
 }
 
 body {
@@ -63,18 +73,14 @@ body {
   color: #f8fafc;
   font-family: var(--font-roboto), "Roboto", sans-serif !important;
   overflow-x: hidden;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE & Edge */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
 button,
 input,
 select,
@@ -83,7 +89,7 @@ p,
 span,
 a,
 div {
-  font-family: var(--font-roboto), "Roboto", sans-serif !important;
+  /* Allow font-family to inherit naturally */
 }
 
 /* Custom Scrollbar - Golden & Blue */
@@ -112,12 +118,14 @@ div {
 
 /* Global Strict Font Aliases */
 .font-editorial,
-.font-serif,
 .font-sans,
-[class*="font-serif"],
 [class*="font-sans"],
 [class*="font-editorial"] {
   font-family: var(--font-roboto), "Roboto", sans-serif !important;
+}
+
+.font-antic {
+  font-family: var(--font-antic), 'Antic Didone', Arial, Helvetica, 'Nimbus Sans L', sans-serif !important;
 }
 
 /* Metallic Gold & Silver Gradients */
@@ -133,19 +141,24 @@ div {
   -webkit-text-fill-color: transparent;
 }
 
+
+
 /* Golden Double Frame Rule (as in PDF Cover) */
 .gold-frame-border {
-  border: 1px solid #d4af37;
-  outline: 1px solid #d4af37;
+  border: 2px solid #d4af37;
+  outline: 2px solid #d4af37;
   outline-offset: 4px;
 }
 
-.gold-border {
-  border-color: rgba(212, 175, 55, 0.4);
+main .gold-border {
+  border: 2px solid rgba(212, 175, 55, 0.8) !important;
+  transition: all 0.3s ease-in-out !important;
 }
 
-.gold-border:hover {
-  border-color: rgba(212, 175, 55, 0.9);
+main .gold-border:hover,
+main .group:hover .group-hover\:gold-border {
+  border-color: #d4af37 !important;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.7) !important;
 }
 
 .silver-border {
@@ -170,4 +183,29 @@ div {
 .silver-line {
   height: 1px;
   background: linear-gradient(90deg, transparent, #cbd5e1 50%, transparent);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hover\:scale-105,
+  .hover\:scale-108,
+  .hover\:scale-110,
+  .group-hover\:scale-105,
+  .group-hover\:scale-108,
+  .group-hover\:scale-110,
+  .group-hover\:scale-\[1\.02\],
+  .group-hover\:scale-\[1\.03\],
+  .group-hover\:scale-\[1\.05\] {
+    transform: none !important;
+  }
 }

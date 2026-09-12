@@ -22,9 +22,9 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       {/* Mobile Top Header */}
       <div className="flex items-center justify-between px-6 py-5 border-b border-[#d4af37]/30 bg-[#0a1a3f]">
         <Link href="/" onClick={onClose} className="flex items-center gap-3">
-          <div className="relative w-36 h-12">
+          <div className="relative w-48 h-16">
             <Image
-              src="/brand-logo.png"
+              src="/logo-transparent.png"
               alt="77 SALON"
               fill
               className="object-contain object-left"
@@ -74,16 +74,10 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
 
             {servicesExpanded && (
               <div className="mt-3 pl-4 border-l border-[#d4af37]/40 space-y-3 pt-2">
-                <Link
-                  href="/services"
-                  onClick={onClose}
-                  className="block text-sm uppercase tracking-widest text-[#d4af37] font-medium"
-                >
-                  All Services Overview →
-                </Link>
-                {SITE_CONFIG.serviceSubmenu.map((item) => (
+
+                {SITE_CONFIG.serviceSubmenu?.map((item) => (
                   <Link
-                    key={item.href}
+                    key={item.label}
                     href={item.href}
                     onClick={onClose}
                     className="block text-[#cbd5e1] hover:text-[#d4af37] text-base py-1 font-light"
@@ -95,13 +89,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             )}
           </div>
 
-          <Link
-            href="/pricing"
-            onClick={onClose}
-            className="block font-sans text-2xl font-light text-[#f8fafc] hover:text-[#d4af37] transition-colors"
-          >
-            Pricing
-          </Link>
+
           <Link
             href="/gallery"
             onClick={onClose}
@@ -128,7 +116,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
         {/* CTA Button */}
         <div className="pt-6 border-t border-[#d4af37]/20 space-y-3">
           <Button
-            href="/book"
+            href="/contact"
             onClick={onClose}
             variant="primary"
             size="lg"

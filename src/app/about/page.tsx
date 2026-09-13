@@ -23,7 +23,7 @@ export default function AboutPage() {
         description="Our salon is home to a passionate team of master stylists, colorists, and beauty experts. Together, we bring decades of experience and artistry to create your perfect look in a luxurious, welcoming environment."
         breadcrumbCurrent="About"
         bgImage="/images/about/team.jpg"
-        heightClass="min-h-[60vh] sm:min-h-[73vh]"
+        heightClass="min-h-[45vh] sm:min-h-[62vh]"
         contentClassName="ml-0 lg:-ml-16 xl:-ml-28 mb-0 sm:mb-12"
         imagePositionClass="object-top sm:object-center"
       />
@@ -125,23 +125,24 @@ export default function AboutPage() {
             ].map((pillar, index) => {
               const anim = index === 0 ? 'fade-right' : index === 2 ? 'fade-left' : 'fade-up';
               return (
-              <ScrollReveal key={pillar.label} animation={anim} delay={pillar.delay} className="h-full">
-                <div className="bg-[#0a1a3f]/90 border-[3px] border-[#d4af37]/30 hover:border-[#d4af37] transition-all duration-300 rounded-lg overflow-hidden flex flex-col group h-full shadow-md hover:shadow-[0_8px_30px_rgba(212,175,55,0.15)]">
-                  <div className="relative h-44 w-full overflow-hidden bg-[#060e22] border-b-[3px] border-[#d4af37]/30 group-hover:border-[#d4af37]/60 transition-colors">
-                    <Image src={pillar.img} alt={pillar.label} fill className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
-                    <div className="absolute bottom-3 left-4 flex items-center gap-2 bg-[#0a1a3f]/90 px-3 py-1 rounded border-[2px] border-[#d4af37]/50 group-hover:border-[#d4af37] transition-colors">
-                      {pillar.icon}
-                      <h3 className="font-antic text-lg text-[#f8fafc] font-light">{pillar.label}</h3>
+                <ScrollReveal key={pillar.label} animation={anim} delay={pillar.delay} className="h-full">
+                  <div className="bg-[#0a1a3f]/90 border-[3px] border-[#d4af37]/30 hover:border-[#d4af37] transition-all duration-300 rounded-lg overflow-hidden flex flex-col group h-full shadow-md hover:shadow-[0_8px_30px_rgba(212,175,55,0.15)]">
+                    <div className="relative h-44 w-full overflow-hidden bg-[#060e22] border-b-[3px] border-[#d4af37]/30 group-hover:border-[#d4af37]/60 transition-colors">
+                      <Image src={pillar.img} alt={pillar.label} fill className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                      <div className="absolute bottom-3 left-4 flex items-center gap-2 bg-[#0a1a3f]/90 px-3 py-1 rounded border-[2px] border-[#d4af37]/50 group-hover:border-[#d4af37] transition-colors">
+                        {pillar.icon}
+                        <h3 className="font-antic text-lg text-[#f8fafc] font-light">{pillar.label}</h3>
+                      </div>
+                    </div>
+                    <div className="p-5 sm:p-6 flex-1">
+                      <p className="text-sm text-[#cbd5e1] font-light leading-relaxed">
+                        {pillar.body}
+                      </p>
                     </div>
                   </div>
-                  <div className="p-5 sm:p-6 flex-1">
-                    <p className="text-sm text-[#cbd5e1] font-light leading-relaxed">
-                      {pillar.body}
-                    </p>
-                  </div>
-                </div>
-              </ScrollReveal>
-            )})}
+                </ScrollReveal>
+              )
+            })}
           </div>
         </Container>
       </section>

@@ -20,7 +20,7 @@ export const GalleryLanding: React.FC = () => {
           description="Step into a visual journey of elegance. Witness the flawless transformations and breathtaking styles meticulously crafted by our master artists."
           breadcrumbCurrent="Gallery"
           bgImage="/images/hero/nails.jpg"
-          heightClass="min-h-[75vh] sm:min-h-[62vh]"
+          heightClass="min-h-[45vh] sm:min-h-[62vh]"
           contentClassName="ml-0 lg:-ml-16 xl:-ml-28 mb-0 sm:mb-16"
         />
         {/* Decorative Watermarks Removed */}
@@ -28,14 +28,14 @@ export const GalleryLanding: React.FC = () => {
 
       <section className="py-12 sm:py-16 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           {/* Filter Tabs */}
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-12 sm:mb-16">
             <button className="px-6 py-2.5 bg-[#d4af37] text-[#060e22] text-[10px] uppercase tracking-widest font-bold shadow-md rounded">
               ALL ALBUMS
             </button>
             {albums.map((album) => (
-              <Link 
+              <Link
                 key={album.slug}
                 href={`/gallery/${album.slug}`}
                 className="px-6 py-2.5 bg-[#0a1a3f] text-[#cbd5e1] border border-[#d4af37]/30 hover:border-[#d4af37]/80 hover:text-white text-[10px] uppercase tracking-widest font-bold transition-all rounded"
@@ -65,7 +65,7 @@ export const GalleryLanding: React.FC = () => {
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#060e22]/90 via-[#060e22]/20 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
-                      
+
                       <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-end">
                         <div className="flex items-end justify-between gap-4 w-full">
                           <div className="flex flex-col items-start text-left">

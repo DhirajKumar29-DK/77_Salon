@@ -106,7 +106,7 @@ export const HeroSection: React.FC = () => {
               alt={s.titleLine2}
               fill
               priority={true}
-              className="object-cover object-right md:object-center"
+              className="object-cover object-center"
               sizes="100vw"
             />
           </div>

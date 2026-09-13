@@ -36,7 +36,7 @@ export default function ContactPage() {
 
   return (
     <div className="bg-[#060e22] text-[#f8fafc] min-h-screen">
-      
+
       {/* ════════════════════════════════════════════════════════════
           HERO SECTION
       ════════════════════════════════════════════════════════════ */}
@@ -46,16 +46,16 @@ export default function ContactPage() {
         description="Reach out to schedule your personalized session. Our dedicated team is here to ensure every detail of your experience is flawlessly arranged."
         breadcrumbCurrent="Contact"
         bgImage="/images/hero/hair.jpg"
-        heightClass="min-h-[75vh] sm:min-h-[71vh]"
+        heightClass="min-h-[45vh] sm:min-h-[62vh]"
         contentClassName="ml-0 lg:-ml-16 xl:-ml-28 mb-0 sm:mb-8"
       />
 
       <section className="relative py-16 sm:py-20 overflow-hidden bg-[#060e22]">
-        
+
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start relative mt-8 lg:mt-12">
-            
+
             {/* ════════════════════════════════════════════════════════════
                 LEFT COLUMN: Contact Information
             ════════════════════════════════════════════════════════════ */}
@@ -74,7 +74,7 @@ export default function ContactPage() {
 
               {/* Contact Method Cards */}
               <div className="space-y-4">
-                
+
                 {/* Telephone */}
                 <div className="border-2 border-[#d4af37]/20 rounded-xl p-5 flex items-center gap-5 hover:border-[#d4af37]/50 bg-[#0a1a3f]/40 backdrop-blur-sm transition-all duration-300 group">
                   <div className="w-12 h-12 rounded-full border-2 border-[#d4af37]/40 flex items-center justify-center text-[#d4af37] shrink-0 bg-[#060e22] group-hover:scale-110 transition-transform">
@@ -156,10 +156,10 @@ export default function ContactPage() {
             ════════════════════════════════════════════════════════════ */}
             <ScrollReveal animation="fade-left" delay={150} className="lg:col-span-7 h-full flex flex-col justify-center">
               <div className="bg-white rounded-xl p-8 sm:p-12 text-[#060e22] shadow-[0_20px_50px_rgba(0,0,0,0.3)] border-[3px] border-[#d4af37]/80 relative">
-                
+
                 {submitted ? (
                   <div className={`py-16 text-center flex flex-col items-center transition-all duration-700 ${showSuccess ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    
+
                     {/* Animated Gold Ring */}
                     <div className="relative mb-8">
                       <div className="w-24 h-24 rounded-full border-4 border-[#d4af37] flex items-center justify-center animate-[ping_1s_ease-out_1] bg-[#d4af37]/10">
@@ -182,7 +182,7 @@ export default function ContactPage() {
                     </div>
 
                     <div className={`transition-all duration-700 delay-500 ${showSuccess ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                      <button 
+                      <button
                         onClick={() => { setSubmitted(false); setShowSuccess(false); setFormData({ name: '', phone: '', email: '', subject: '', message: '' }); }}
                         className="text-[10px] uppercase tracking-widest font-bold text-[#d4af37] border-b-2 border-[#d4af37]/40 pb-1 hover:border-[#d4af37] transition-colors"
                       >
@@ -213,7 +213,7 @@ export default function ContactPage() {
                             className="block py-3.5 px-4 w-full text-sm text-[#060e22] bg-white border-2 border-slate-400 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-[#d4af37] peer transition-all"
                             placeholder=" "
                             value={formData.name}
-                            onChange={e => setFormData({...formData, name: e.target.value})}
+                            onChange={e => setFormData({ ...formData, name: e.target.value })}
                           />
                           <label htmlFor="floating_name" className="absolute pointer-events-none text-sm text-slate-500 bg-white px-1 duration-300 transform -translate-y-1/2 top-0 left-3 scale-75 origin-[0] z-10 peer-placeholder-shown:bg-transparent peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-focus:bg-white peer-focus:top-0 peer-focus:scale-75 peer-focus:text-[#d4af37]">Full Name *</label>
                         </div>
@@ -225,12 +225,12 @@ export default function ContactPage() {
                             className="block py-3.5 px-4 w-full text-sm text-[#060e22] bg-white border-2 border-slate-400 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-[#d4af37] peer transition-all"
                             placeholder=" "
                             value={formData.phone}
-                            onChange={e => setFormData({...formData, phone: e.target.value})}
+                            onChange={e => setFormData({ ...formData, phone: e.target.value })}
                           />
                           <label htmlFor="floating_phone" className="absolute pointer-events-none text-sm text-slate-500 bg-white px-1 duration-300 transform -translate-y-1/2 top-0 left-3 scale-75 origin-[0] z-10 peer-placeholder-shown:bg-transparent peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-focus:bg-white peer-focus:top-0 peer-focus:scale-75 peer-focus:text-[#d4af37]">Phone Number *</label>
                         </div>
                       </div>
-                      
+
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div className="relative w-full group mt-2">
                           <input
@@ -239,7 +239,7 @@ export default function ContactPage() {
                             className="block py-3.5 px-4 w-full text-sm text-[#060e22] bg-white border-2 border-slate-400 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-[#d4af37] peer transition-all"
                             placeholder=" "
                             value={formData.email}
-                            onChange={e => setFormData({...formData, email: e.target.value})}
+                            onChange={e => setFormData({ ...formData, email: e.target.value })}
                           />
                           <label htmlFor="floating_email" className="absolute pointer-events-none text-sm text-slate-500 bg-white px-1 duration-300 transform -translate-y-1/2 top-0 left-3 scale-75 origin-[0] z-10 peer-placeholder-shown:bg-transparent peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-focus:bg-white peer-focus:top-0 peer-focus:scale-75 peer-focus:text-[#d4af37]">Email Address</label>
                         </div>
@@ -248,7 +248,7 @@ export default function ContactPage() {
                             id="floating_subject"
                             className={`block py-3.5 px-4 w-full text-sm bg-white border-2 border-slate-400 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-[#d4af37] peer transition-all cursor-pointer ${!formData.subject ? 'text-transparent focus:text-[#060e22]' : 'text-[#060e22]'}`}
                             value={formData.subject}
-                            onChange={e => setFormData({...formData, subject: e.target.value})}
+                            onChange={e => setFormData({ ...formData, subject: e.target.value })}
                           >
                             <option value="" disabled hidden>Select a Department...</option>
                             <option value="General Inquiry">General Inquiry</option>
@@ -270,12 +270,12 @@ export default function ContactPage() {
                           className="block py-4 px-4 w-full text-sm text-[#060e22] bg-white border-2 border-slate-400 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-[#d4af37] peer transition-all resize-none"
                           placeholder=" "
                           value={formData.message}
-                          onChange={e => setFormData({...formData, message: e.target.value})}
+                          onChange={e => setFormData({ ...formData, message: e.target.value })}
                         />
                         <label htmlFor="floating_message" className="absolute pointer-events-none text-sm text-slate-500 bg-white px-1 duration-300 transform -translate-y-1/2 top-0 left-3 scale-75 origin-[0] z-10 peer-placeholder-shown:bg-transparent peer-placeholder-shown:scale-100 peer-placeholder-shown:top-[28px] peer-focus:bg-white peer-focus:top-0 peer-focus:scale-75 peer-focus:text-[#d4af37]">Your Message *</label>
                       </div>
 
-                      <Button 
+                      <Button
                         type="submit"
                         variant="primary"
                         className="w-full mt-2"
@@ -302,23 +302,23 @@ export default function ContactPage() {
 
                 {/* Bottom Icons Divider */}
                 <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent my-8" />
-                
+
                 {/* 3 Icons Row */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center divide-y sm:divide-y-0 sm:divide-x divide-[#e2e8f0]">
                   <div className="px-2">
                     <Headphones className="w-6 h-6 text-[#d4af37] mx-auto mb-3" />
                     <h4 className="text-[9px] font-bold uppercase tracking-widest text-[#060e22] mb-1.5">PROMPT RESPONSE</h4>
-                    <p className="text-[10px] text-[#718096] font-light leading-snug">We aim to respond<br/>as soon as possible</p>
+                    <p className="text-[10px] text-[#718096] font-light leading-snug">We aim to respond<br />as soon as possible</p>
                   </div>
                   <div className="px-2">
                     <Diamond className="w-6 h-6 text-[#d4af37] mx-auto mb-3" />
                     <h4 className="text-[9px] font-bold uppercase tracking-widest text-[#060e22] mb-1.5">PERSONALIZED SUPPORT</h4>
-                    <p className="text-[10px] text-[#718096] font-light leading-snug">Assistance tailored<br/>to your needs</p>
+                    <p className="text-[10px] text-[#718096] font-light leading-snug">Assistance tailored<br />to your needs</p>
                   </div>
                   <div className="px-2">
                     <Heart className="w-6 h-6 text-[#d4af37] mx-auto mb-3" />
                     <h4 className="text-[9px] font-bold uppercase tracking-widest text-[#060e22] mb-1.5">YOUR BEAUTY MATTERS</h4>
-                    <p className="text-[10px] text-[#718096] font-light leading-snug">We&apos;re here to help<br/>you shine</p>
+                    <p className="text-[10px] text-[#718096] font-light leading-snug">We&apos;re here to help<br />you shine</p>
                   </div>
                 </div>
 

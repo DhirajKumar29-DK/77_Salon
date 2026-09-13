@@ -14,7 +14,7 @@ export const metadata = {
 export default function BridalPage() {
   return (
     <div className="bg-[#060e22] text-[#f8fafc] min-h-screen overflow-x-hidden pt-[68px]">
-      
+
       {/* ════════════════════════════════════════════════════════════
           1. HERO SECTION (Compact PageHero style)
       ════════════════════════════════════════════════════════════ */}
@@ -45,13 +45,13 @@ export default function BridalPage() {
       <section className="py-20 sm:py-28 bg-[#0a1a3f]">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-            
+
             {/* Left Image */}
             <ScrollReveal animation="fade-right" className="relative aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10] w-full rounded-xl overflow-hidden border-[3px] border-[#d4af37]/20 hover:border-[#d4af37] transition-all duration-300 shadow-xl">
-              <Image 
-                src="/images/services/bride-hands.jpg" 
-                alt="Bridal Preparation" 
-                fill 
+              <Image
+                src="/images/services/bride-hands.jpg"
+                alt="Bridal Preparation"
+                fill
                 className="object-cover"
               />
             </ScrollReveal>
@@ -99,7 +99,7 @@ export default function BridalPage() {
       ════════════════════════════════════════════════════════════ */}
       <section className="py-20 sm:py-28 bg-[#060e22] border-t border-[#d4af37]/20">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
-          
+
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-12">
             <div>
               <span className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] font-bold block mb-2">
@@ -124,27 +124,28 @@ export default function BridalPage() {
             ].map((card, i) => {
               const anim = i === 0 ? 'fade-right' : i === 3 ? 'fade-left' : 'fade-up';
               return (
-              <ScrollReveal key={i} animation={anim} delay={i * 100} className="h-full">
-                <div className="flex flex-col bg-[#0a1a3f] rounded-xl overflow-hidden border-[3px] border-[#d4af37]/20 hover:border-[#d4af37] transition-all duration-300 h-full">
-                  <div className="relative h-48 w-full">
-                    <Image src={card.img} alt={card.title} fill className="object-cover" />
+                <ScrollReveal key={i} animation={anim} delay={i * 100} className="h-full">
+                  <div className="flex flex-col bg-[#0a1a3f] rounded-xl overflow-hidden border-[3px] border-[#d4af37]/20 hover:border-[#d4af37] transition-all duration-300 h-full">
+                    <div className="relative h-48 w-full">
+                      <Image src={card.img} alt={card.title} fill className="object-cover" />
+                    </div>
+                    <div className="p-6 flex flex-col flex-1">
+                      <span className="text-[9px] text-[#d4af37] font-bold uppercase tracking-widest mb-2">
+                        {card.cat}
+                      </span>
+                      <h3 className="font-antic text-xl text-white mb-1">{card.title}</h3>
+                      <p className="text-[#d4af37] font-serif text-lg font-semibold mb-2">{card.price}</p>
+                      <p className="text-xs text-[#94a3b8] font-light leading-relaxed flex-1 mb-6">
+                        {card.desc}
+                      </p>
+                      <Button href="/contact" variant="primary" className="w-full">
+                        BOOK
+                      </Button>
+                    </div>
                   </div>
-                  <div className="p-6 flex flex-col flex-1">
-                    <span className="text-[9px] text-[#d4af37] font-bold uppercase tracking-widest mb-2">
-                      {card.cat}
-                    </span>
-                    <h3 className="font-antic text-xl text-white mb-1">{card.title}</h3>
-                    <p className="text-[#d4af37] font-serif text-lg font-semibold mb-2">{card.price}</p>
-                    <p className="text-xs text-[#94a3b8] font-light leading-relaxed flex-1 mb-6">
-                      {card.desc}
-                    </p>
-                    <Button href="/contact" variant="primary" className="w-full">
-                      BOOK
-                    </Button>
-                  </div>
-                </div>
-              </ScrollReveal>
-            )})}
+                </ScrollReveal>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -154,7 +155,7 @@ export default function BridalPage() {
       ════════════════════════════════════════════════════════════ */}
       <section className="py-20 sm:py-28 bg-[#0a1a3f] border-y border-[#d4af37]/20">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
-          
+
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-16">
             <div>
               <span className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] font-bold block mb-2">
@@ -182,22 +183,23 @@ export default function BridalPage() {
               ].map((step, i) => {
                 const anim = i === 0 ? 'fade-right' : i === 3 ? 'fade-left' : 'fade-up';
                 return (
-                <ScrollReveal key={i} animation={anim} delay={i * 100}>
-                  <div className="flex flex-row md:flex-col items-start gap-5">
-                    <div className="shrink-0 w-14 h-14 rounded-full border-2 border-[#d4af37] bg-[#0a1a3f] flex items-center justify-center text-white font-serif text-lg">
-                      {step.num}
+                  <ScrollReveal key={i} animation={anim} delay={i * 100}>
+                    <div className="flex flex-row md:flex-col items-start gap-5">
+                      <div className="shrink-0 w-14 h-14 rounded-full border-2 border-[#d4af37] bg-[#0a1a3f] flex items-center justify-center text-white font-serif text-lg">
+                        {step.num}
+                      </div>
+                      <div>
+                        <h3 className="text-xs font-bold text-[#d4af37] uppercase tracking-widest mb-2 mt-1">
+                          {step.title}
+                        </h3>
+                        <p className="text-[11px] text-[#cbd5e1] font-light leading-relaxed">
+                          {step.desc}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-xs font-bold text-[#d4af37] uppercase tracking-widest mb-2 mt-1">
-                        {step.title}
-                      </h3>
-                      <p className="text-[11px] text-[#cbd5e1] font-light leading-relaxed">
-                        {step.desc}
-                      </p>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              )})}
+                  </ScrollReveal>
+                )
+              })}
             </div>
           </div>
         </div>
@@ -208,7 +210,7 @@ export default function BridalPage() {
       ════════════════════════════════════════════════════════════ */}
       <section className="py-20 sm:py-28 bg-[#060e22]">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
-          
+
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-12">
             <div>
               <span className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] font-bold block mb-2">
@@ -279,15 +281,15 @@ export default function BridalPage() {
       ════════════════════════════════════════════════════════════ */}
       <section className="py-16 sm:py-20 relative overflow-hidden border-t border-[#d4af37]/20">
         <div className="absolute inset-0">
-          <Image 
-            src="/images/services/bridal-facial.jpg" 
-            alt="CTA Background" 
-            fill 
-            className="object-cover opacity-30" 
+          <Image
+            src="/images/services/bridal-facial.jpg"
+            alt="CTA Background"
+            fill
+            className="object-cover opacity-30"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#060e22] via-[#060e22]/95 to-[#060e22]/40" />
         </div>
-        
+
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="max-w-xl">
             <span className="text-[10px] uppercase tracking-[0.3em] text-[#d4af37] font-bold block mb-4">
@@ -299,7 +301,7 @@ export default function BridalPage() {
             <p className="text-sm text-[#cbd5e1] font-light mb-8">
               Plan your beauty appointments around the moments that matter.
             </p>
-            
+
             <div className="flex flex-wrap items-center gap-4">
               <Button
                 href="/contact"
@@ -314,7 +316,7 @@ export default function BridalPage() {
           </div>
 
           <div className="hidden md:block text-right pr-10">
-             <p className="font-serif text-5xl italic text-[#d4af37]/40 leading-snug whitespace-pre-line rotate-[-5deg]">
+            <p className="font-serif text-5xl italic text-[#d4af37]/40 leading-snug whitespace-pre-line rotate-[-5deg]">
               Your Day{"\n"}Your Details{"\n"}Our Care
             </p>
           </div>

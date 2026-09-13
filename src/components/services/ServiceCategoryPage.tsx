@@ -78,10 +78,10 @@ export const ServiceCategoryPage: React.FC<Props> = ({ initialCategory }) => {
       <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-20 overflow-hidden">
         {/* BG image */}
         <div className="absolute inset-0">
-          <Image 
-            src={cat.heroImage} 
-            alt={cat.label} 
-            fill 
+          <Image
+            src={cat.heroImage}
+            alt={cat.label}
+            fill
             className="object-cover object-center"
             priority
           />
@@ -102,39 +102,39 @@ export const ServiceCategoryPage: React.FC<Props> = ({ initialCategory }) => {
         </div>
 
         {/* Hero text content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 flex flex-col justify-end min-h-[75vh] sm:min-h-[64vh]">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 flex flex-col justify-end min-h-[45vh] sm:min-h-[62vh]">
           <div className="flex flex-col items-start max-w-3xl relative z-20 ml-0 lg:-ml-16 xl:-ml-28 mb-12 sm:mb-24 lg:mb-32">
             {/* Breadcrumb */}
             <nav
               className="flex items-center justify-start gap-2 text-[10px] uppercase tracking-widest text-[#94a3b8] mb-5"
               style={{ animation: 'fadeUp 0.5s 0.1s both' }}
             >
-            <Link href="/" className="hover:text-[#d4af37] transition-colors">Home</Link>
-            <ChevronRight className="w-3 h-3" />
-            <span className="text-[#d4af37]">Services</span>
-            <ChevronRight className="w-3 h-3" />
-            <span className="text-[#d4af37]">{cat.label}</span>
-          </nav>
+              <Link href="/" className="hover:text-[#d4af37] transition-colors">Home</Link>
+              <ChevronRight className="w-3 h-3" />
+              <span className="text-[#d4af37]">Services</span>
+              <ChevronRight className="w-3 h-3" />
+              <span className="text-[#d4af37]">{cat.label}</span>
+            </nav>
 
-          <div style={{ animation: 'fadeUp 0.5s 0.2s both' }}>
-            <span className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.35em] text-[#d4af37] font-bold">
-              <span className="w-8 h-[1px] bg-[#d4af37]" />
-              {cat.eyebrow}
-              <span className="w-8 h-[1px] bg-[#d4af37]" />
-            </span>
-          </div>
+            <div style={{ animation: 'fadeUp 0.5s 0.2s both' }}>
+              <span className="inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.35em] text-[#d4af37] font-bold">
+                <span className="w-8 h-[1px] bg-[#d4af37]" />
+                {cat.eyebrow}
+                <span className="w-8 h-[1px] bg-[#d4af37]" />
+              </span>
+            </div>
 
-          <h1
-            className="font-antic font-light text-4xl sm:text-5xl md:text-6xl text-white leading-[1.1] tracking-tight mt-3 mb-4 drop-shadow-lg"
-            style={{ animation: 'fadeUp 0.7s 0.3s both' }}
-          >
-            {cat.headline}
-          </h1>
+            <h1
+              className="font-antic font-light text-4xl sm:text-5xl md:text-6xl text-white leading-[1.1] tracking-tight mt-3 mb-4 drop-shadow-lg"
+              style={{ animation: 'fadeUp 0.7s 0.3s both' }}
+            >
+              {cat.headline}
+            </h1>
 
-          <p
-            className="text-base sm:text-lg text-[#cbd5e1] font-light max-w-2xl leading-relaxed"
-            style={{ animation: 'fadeUp 0.6s 0.4s both' }}
-          >
+            <p
+              className="text-base sm:text-lg text-[#cbd5e1] font-light max-w-2xl leading-relaxed"
+              style={{ animation: 'fadeUp 0.6s 0.4s both' }}
+            >
               {cat.description}
             </p>
           </div>
@@ -225,53 +225,60 @@ export const ServiceCategoryPage: React.FC<Props> = ({ initialCategory }) => {
           <div className="space-y-2">
             {services.map((svc, idx) => (
               <Reveal key={svc.id} delay={idx * 60} direction="up">
-                <div className="group flex items-center gap-5 p-4 sm:p-5 rounded-xl border-[3px] border-transparent hover:border-[#d4af37] hover:bg-[#0a1a3f] transition-all duration-300 hover:shadow-[0_4px_20px_rgba(212,175,55,0.1)]">
-                  {/* Thumbnail */}
-                  <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-[3px] border-[#d4af37] shrink-0 group-hover:border-[#d4af37] transition-all duration-300">
-                    <Image src={cat.heroImage} alt={svc.name} fill className="object-cover transition-transform duration-500 group-hover:scale-[1.08]" sizes="64px" />
-                  </div>
-
-                  {/* Index */}
-                  <span className="text-xs text-[#d4af37]/30 font-light tabular-nums hidden sm:block shrink-0 w-6">
-                    {String(idx + 1).padStart(2, '0')}
-                  </span>
-
-                  {/* Info */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-base sm:text-lg font-semibold text-[#e2e8f0] group-hover:text-white transition-colors">
-                        {svc.name}
-                      </span>
-                      {svc.isSignature && (
-                        <span className="inline-flex items-center gap-1 text-[9px] uppercase tracking-wider px-2.5 py-0.5 bg-[#d4af37]/15 text-[#d4af37] font-bold rounded-full border border-[#d4af37]/30">
-                          <Sparkles className="w-2.5 h-2.5" />
-                          Most Popular
-                        </span>
-                      )}
+                <div className="group flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-5 p-4 sm:p-5 rounded-xl border-[3px] border-transparent hover:border-[#d4af37] hover:bg-[#0a1a3f] transition-all duration-300 hover:shadow-[0_4px_20px_rgba(212,175,55,0.1)]">
+                  
+                  {/* Top Row on Mobile / Left Side on Desktop */}
+                  <div className="flex items-start sm:items-center gap-4 sm:gap-5 w-full sm:flex-1 min-w-0">
+                    {/* Thumbnail */}
+                    <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-[3px] border-[#d4af37] shrink-0 group-hover:border-[#d4af37] transition-all duration-300">
+                      <Image src={cat.heroImage} alt={svc.name} fill className="object-cover transition-transform duration-500 group-hover:scale-[1.08]" sizes="64px" />
                     </div>
-                    <p className="text-xs text-[#7d8fa3] font-light mt-0.5">{svc.description}</p>
+
+                    {/* Index */}
+                    <span className="text-xs text-[#d4af37]/30 font-light tabular-nums hidden sm:block shrink-0 w-6">
+                      {String(idx + 1).padStart(2, '0')}
+                    </span>
+
+                    {/* Info */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="text-base sm:text-lg font-semibold text-[#e2e8f0] group-hover:text-white transition-colors">
+                          {svc.name}
+                        </span>
+                        {svc.isSignature && (
+                          <span className="inline-flex items-center gap-1 text-[9px] uppercase tracking-wider px-2.5 py-0.5 bg-[#d4af37]/15 text-[#d4af37] font-bold rounded-full border border-[#d4af37]/30">
+                            <Sparkles className="w-2.5 h-2.5" />
+                            Most Popular
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-xs text-[#7d8fa3] font-light mt-0.5">{svc.description}</p>
+                    </div>
                   </div>
 
-                  {/* Duration */}
-                  {svc.duration && (
-                    <span className="hidden md:flex items-center gap-1.5 text-xs text-[#7d8fa3] shrink-0">
-                      <Clock className="w-3 h-3 text-[#d4af37]/50" />
-                      {svc.duration}
+                  {/* Bottom Row on Mobile / Right Side on Desktop */}
+                  <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto pl-[72px] sm:pl-0 mt-2 sm:mt-0 gap-4">
+                    {/* Duration */}
+                    {svc.duration && (
+                      <span className="hidden md:flex items-center gap-1.5 text-xs text-[#7d8fa3] shrink-0">
+                        <Clock className="w-3 h-3 text-[#d4af37]/50" />
+                        {svc.duration}
+                      </span>
+                    )}
+
+                    {/* Price */}
+                    <span className="font-serif text-2xl sm:text-3xl text-[#d4af37] font-semibold shrink-0">
+                      {svc.formattedPrice}
                     </span>
-                  )}
 
-                  {/* Price */}
-                  <span className="font-serif text-2xl sm:text-3xl text-[#d4af37] font-semibold shrink-0">
-                    {svc.formattedPrice}
-                  </span>
-
-                  {/* Book */}
-                  <Link
-                    href="/contact"
-                    className="shrink-0 px-5 py-2 bg-[#d4af37] text-[#060e22] text-[10px] uppercase tracking-widest font-bold hover:bg-[#e5c568] hover:shadow-[0_4px_16px_rgba(212,175,55,0.3)] transition-all duration-200 rounded-lg"
-                  >
-                    Book
-                  </Link>
+                    {/* Book */}
+                    <Link
+                      href="/contact"
+                      className="shrink-0 px-5 py-2 bg-[#d4af37] text-[#060e22] text-[10px] uppercase tracking-widest font-bold hover:bg-[#e5c568] hover:shadow-[0_4px_16px_rgba(212,175,55,0.3)] transition-all duration-200 rounded-lg"
+                    >
+                      Book
+                    </Link>
+                  </div>
                 </div>
                 {idx < services.length - 1 && (
                   <div className="h-[1px] bg-[#d4af37]/8 mx-5" />
